@@ -1,4 +1,4 @@
-## National Radio Frequency Repository
+## Collaborative Radio Frequency Repository
 
 ## Installation
 
