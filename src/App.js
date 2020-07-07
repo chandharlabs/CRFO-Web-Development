@@ -22,7 +22,7 @@ class App extends Component {
       selectedLocCoordinate: [],
       selectedLocationDataDisplay: false,
       newsSearchKeyword: "India",
-      showTestCenters: false,
+      showTestCenters: true,
       dimensions: {
         height: window.innerHeight,
         width: window.innerWidth

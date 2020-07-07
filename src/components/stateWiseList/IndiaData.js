@@ -101,7 +101,7 @@ export default function IndiaData(props) {
               <label className="switch">
                 <input
                   type="checkbox"
-                  value={viewTestCenters}
+                  checked={viewTestCenters}
                   onChange={e => handleTestCentersToggle()}
                 />
                 <span className="slider round"></span>
