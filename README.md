@@ -1,4 +1,4 @@
-## Collaborative Radio Frequency Observatory
+## Collaborative Radio Frequency Observatory (CRFO)
 
 ## Installation
 
