@@ -19,8 +19,8 @@ const AppHeader = props => {
         >
           <img
             className={cx("logo")}
-            src="./coronaSafeLogo.svg"
-            alt="CoronaSafe Logo"
+            src="./crfoLogo.svg"
+            alt="CRFO Logo"
             height={80}
           />
         </a>
