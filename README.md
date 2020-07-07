@@ -1,4 +1,4 @@
-## Collaborative Radio Frequency Repository
+## Collaborative Radio Frequency Observatory
 
 ## Installation
 
