@@ -576,7 +576,7 @@ export default function MapContainer(props) {
             return (
               <Marker
                 key={testCenter.institution}
-                position={[testCenter.latitude, testCenter.longitude]}
+                position={[testCenter.longitude, testCenter.latitude]}
                 onMouseOver={e => {
                   e.target.openPopup();
                 }}
@@ -586,9 +586,9 @@ export default function MapContainer(props) {
                   <a
                     href={
                       "https://www.google.com/maps/search/?api=1&query=" +
-                      testCenter.institution +
-                      "&query_place_id=" +
-                      testCenter.place_id
+                      testCenter.longitude +
+                      "," +
+                      testCenter.latitude
                     }
                     target="_blank"
                     rel="noopener noreferrer"
