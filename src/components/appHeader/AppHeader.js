@@ -13,7 +13,7 @@ const AppHeader = props => {
         style={{ backgroundColor: "#efefef" }}
       >
         <a
-          href="https://coronasafe.in/"
+          href="https://crfo.org/"
           target="_blank"
           rel="noopener noreferrer"
         >
