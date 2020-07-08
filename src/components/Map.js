@@ -1,67 +1,67 @@
-import React, { useState, useEffect } from "react";
+import React /* ,{ useState, useEffect }*/ from "react";
 import {
-  Circle,
+  //  Circle,
   Map,
   Marker,
   Popup,
   // Tooltip,
   TileLayer,
 } from "react-leaflet";
-import { readRemoteFile } from "react-papaparse";
+// import { readRemoteFile } from "react-papaparse";
 // import geoLocation from "../data/geoLocation.js";
 // import districtGeoLocation from "../data/districtGeoLocation.js";
 import testCenters from "../data/testCenters.js";
-import classNames from "classnames/bind";
-const cx = classNames.bind(require("./map.module.css"));
+// import classNames from "classnames/bind";
+// const cx = classNames.bind(require("./map.module.css"));
 
 let center = [9.5915668, 76.5221531];
-const papaparseOptions = {
-  header: true,
-  dynamicTyping: true,
-  skipEmptyLines: true,
-  transformHeader: (header) => header.toLowerCase().replace(/\W/g, "_"),
-};
+// const papaparseOptions = {
+//   header: true,
+//   dynamicTyping: true,
+//   skipEmptyLines: true,
+//   transformHeader: (header) => header.toLowerCase().replace(/\W/g, "_"),
+// };
 
 // to aggregate data by state+country and sum up metrics
-const groupMetricsByStateAndCountry = (data) => {
-  const internationalDataLookup = Array.isArray(data)
-    ? data
-        .filter((data) => data.lat && data.long_)
-        .reduce((intLookup, data) => {
-          const key = `${data.province_state}.${data.country_region}`;
-          if (intLookup[key]) {
-            intLookup[key] = {
-              ...intLookup[key],
-              deaths: intLookup[key].deaths + data.deaths,
-              confirmed: intLookup[key].confirmed + data.confirmed,
-              recovered: intLookup[key].recovered + data.recovered,
-              active: intLookup[key].active + data.active,
-            };
-            return intLookup;
-          }
-          intLookup[key] = data;
-          return intLookup;
-        }, {})
-    : {};
-  return Object.keys(internationalDataLookup).map(
-    (key) => internationalDataLookup[key]
-  );
-};
-const PopupLineItem = ({ type, count, legend }) => {
-  return (
-    <>
-      <div className={cx(["popup-legend", "legend-" + legend])}></div>
-      <div className={cx("count-type")}>{type}</div>
-      <div className={cx("counts")}>
-        {count !== undefined && count !== null
-          ? count.toLocaleString(navigator.language, {
-              maximumFractionDigits: 2,
-            })
-          : ""}
-      </div>
-    </>
-  );
-};
+// const groupMetricsByStateAndCountry = (data) => {
+//   const internationalDataLookup = Array.isArray(data)
+//     ? data
+//         .filter((data) => data.lat && data.long_)
+//         .reduce((intLookup, data) => {
+//           const key = `${data.province_state}.${data.country_region}`;
+//           if (intLookup[key]) {
+//             intLookup[key] = {
+//               ...intLookup[key],
+//               deaths: intLookup[key].deaths + data.deaths,
+//               confirmed: intLookup[key].confirmed + data.confirmed,
+//               recovered: intLookup[key].recovered + data.recovered,
+//               active: intLookup[key].active + data.active,
+//             };
+//             return intLookup;
+//           }
+//           intLookup[key] = data;
+//           return intLookup;
+//         }, {})
+//     : {};
+//   return Object.keys(internationalDataLookup).map(
+//     (key) => internationalDataLookup[key]
+//   );
+// };
+// const PopupLineItem = ({ type, count, legend }) => {
+//   return (
+//     <>
+//       <div className={cx(["popup-legend", "legend-" + legend])}></div>
+//       <div className={cx("count-type")}>{type}</div>
+//       <div className={cx("counts")}>
+//         {count !== undefined && count !== null
+//           ? count.toLocaleString(navigator.language, {
+//               maximumFractionDigits: 2,
+//             })
+//           : ""}
+//       </div>
+//     </>
+//   );
+// };
 
 export default function MapContainer(props) {
   const {
@@ -242,6 +242,7 @@ export default function MapContainer(props) {
               >
                 <Popup>
                   <h3>{testCenter.institution}</h3>
+
                   <a
                     href={
                       "https://www.google.com/maps/search/?api=1&query=" +
