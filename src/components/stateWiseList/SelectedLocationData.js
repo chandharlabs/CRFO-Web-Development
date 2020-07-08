@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import NewsCard from "./NewsCard";
 import DetailedTile from "./DetailedTile";
-import DistrictWiseList from "./DistrictWiseList";
 import Chart from "../Chart";
 import classNames from "classnames/bind";
 const cx = classNames.bind(require("./stateWiseList.module.css"));
@@ -59,10 +58,6 @@ export default class SelectedLocationData extends Component {
                   }}
                 />
                 <Chart locationData={locationData} />
-                <DistrictWiseList
-                  districtWiseData={locationData.subLocations}
-                />
-{/*<NewsCard news={news} />*/}
               </section>
             )}
           </section>
