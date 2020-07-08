@@ -573,14 +573,14 @@ export default function MapContainer(props) {
           testCenters.map((testCenter) => {
             return (
               <Marker
-                key={testCenter.institution}
+                key={testCenter.city}
                 position={[testCenter.longitude, testCenter.latitude]}
                 onMouseOver={(e) => {
                   e.target.openPopup();
                 }}
               >
                 <Popup>
-                  <h3>{testCenter.institution}</h3>
+                  <h3>{testCenter.city}</h3>
                   <a
                     href={
                       "https://www.google.com/maps/search/?api=1&query=" +
