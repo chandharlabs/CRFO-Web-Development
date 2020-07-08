@@ -5,7 +5,7 @@ import {
   Marker,
   Popup,
   // Tooltip,
-  TileLayer
+  TileLayer,
 } from "react-leaflet";
 import { readRemoteFile } from "react-papaparse";
 import geoLocation from "../data/geoLocation.js";
@@ -19,32 +19,34 @@ const papaparseOptions = {
   header: true,
   dynamicTyping: true,
   skipEmptyLines: true,
-  transformHeader: header => header.toLowerCase().replace(/\W/g, "_")
+  transformHeader: (header) => header.toLowerCase().replace(/\W/g, "_"),
 };
 
 // to aggregate data by state+country and sum up metrics
 const groupMetricsByStateAndCountry = (data) => {
   const internationalDataLookup = Array.isArray(data)
     ? data
-    .filter((data) => data.lat && data.long_)
-    .reduce((intLookup, data) => {
-      const key = `${data.province_state}.${data.country_region}`;
-      if (intLookup[key]) {
-        intLookup[key] = {
-          ...intLookup[key],
-          deaths: intLookup[key].deaths + data.deaths,
-          confirmed: intLookup[key].confirmed + data.confirmed,
-          recovered: intLookup[key].recovered + data.recovered,
-          active: intLookup[key].active + data.active,
-        };
-        return intLookup;
-      }
-      intLookup[key] = data;
-      return intLookup
-    }, {})
+        .filter((data) => data.lat && data.long_)
+        .reduce((intLookup, data) => {
+          const key = `${data.province_state}.${data.country_region}`;
+          if (intLookup[key]) {
+            intLookup[key] = {
+              ...intLookup[key],
+              deaths: intLookup[key].deaths + data.deaths,
+              confirmed: intLookup[key].confirmed + data.confirmed,
+              recovered: intLookup[key].recovered + data.recovered,
+              active: intLookup[key].active + data.active,
+            };
+            return intLookup;
+          }
+          intLookup[key] = data;
+          return intLookup;
+        }, {})
     : {};
-  return Object.keys(internationalDataLookup).map(key => internationalDataLookup[key]);
-}
+  return Object.keys(internationalDataLookup).map(
+    (key) => internationalDataLookup[key]
+  );
+};
 const PopupLineItem = ({ type, count, legend }) => {
   return (
     <>
@@ -53,8 +55,8 @@ const PopupLineItem = ({ type, count, legend }) => {
       <div className={cx("counts")}>
         {count !== undefined && count !== null
           ? count.toLocaleString(navigator.language, {
-            maximumFractionDigits: 2
-          })
+              maximumFractionDigits: 2,
+            })
           : ""}
       </div>
     </>
@@ -66,13 +68,13 @@ export default function MapContainer(props) {
     onStateWiseDataGetSuccess,
     onDistrictWiseDataGetSuccess,
     viewTestCenters,
-    selectedLocCoordinate
+    selectedLocCoordinate,
   } = props;
 
   if (selectedLocCoordinate && selectedLocCoordinate.length) {
     center = [
       selectedLocCoordinate[0].latitude,
-      selectedLocCoordinate[0].longitude
+      selectedLocCoordinate[0].longitude,
     ];
   }
   const [indiaData, setIndiaData] = useState(null);
@@ -97,7 +99,7 @@ export default function MapContainer(props) {
         data.reduce((a, b) => ({
           confirmed: a.confirmed + b.confirmed,
           deaths: a.deaths + b.deaths,
-          recovered: a.recovered + b.recovered
+          recovered: a.recovered + b.recovered,
         }))
       );
   };
@@ -106,7 +108,7 @@ export default function MapContainer(props) {
       if (indiaData.countryData)
         if (
           countrySummary.confirmedCasesIndian +
-          countrySummary.confirmedCasesForeign >
+            countrySummary.confirmedCasesForeign >
           indiaData.countryData.total
         )
           setIndiaData(null);
@@ -114,39 +116,39 @@ export default function MapContainer(props) {
   useEffect(() => {
     console.log("Fetching Data");
     fetch("https://exec.clay.run/kunksed/mohfw-covid")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           // console.log("Received Response")
           setIndiaData(result);
         },
-        error => {
+        (error) => {
           // console.log("Error Response")
         }
       );
     fetch("https://volunteer.coronasafe.network/api/reports")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           console.log("Received Response" + result);
           onDistrictWiseDataGetSuccess
             ? onDistrictWiseDataGetSuccess(result)
-            : (() => { })();
+            : (() => {})();
           setDistrictData(result);
         },
-        error => {
+        (error) => {
           console.log("Error Response");
         }
       );
 
     fetch("https://api.rootnet.in/covid19-in/stats/latest")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           console.log("Received Response" + result);
           onStateWiseDataGetSuccess
             ? onStateWiseDataGetSuccess(result.data)
-            : (() => { })();
+            : (() => {})();
           setStateData(
             Object.assign(
               {},
@@ -156,14 +158,14 @@ export default function MapContainer(props) {
                   confirmedCasesIndian,
                   confirmedCasesForeign,
                   deaths,
-                  discharged
+                  discharged,
                 }) => ({
                   [loc]: {
                     confirmedCasesIndian,
                     confirmedCasesForeign,
                     deaths,
-                    discharged
-                  }
+                    discharged,
+                  },
                 })
               )
             )
@@ -171,12 +173,12 @@ export default function MapContainer(props) {
 
           setCountrySummary(result.data.summary);
         },
-        error => {
+        (error) => {
           console.log("Error Response");
         }
       );
 
-    const tryYesterday = date => {
+    const tryYesterday = (date) => {
       date.setDate(date.getDate() - 1);
       const formattedDate =
         (date.getMonth() > 8
@@ -189,12 +191,12 @@ export default function MapContainer(props) {
       // console.log(formattedDate);
       readRemoteFile(
         "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" +
-        formattedDate +
-        ".csv",
+          formattedDate +
+          ".csv",
         {
           ...papaparseOptions,
           complete: parseInternationalData,
-          error: () => tryYesterday(date)
+          error: () => tryYesterday(date),
         }
       );
     };
@@ -209,20 +211,20 @@ export default function MapContainer(props) {
       date.getFullYear();
     readRemoteFile(
       "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" +
-      formattedDate +
-      ".csv",
+        formattedDate +
+        ".csv",
       {
         ...papaparseOptions,
         complete: parseInternationalData,
-        error: () => tryYesterday(date)
+        error: () => tryYesterday(date),
       }
     );
   }, []);
   console.log(viewTestCenters);
 
-  const findRadius = cases => {
-    return (Math.cbrt(cases)) * 1500
-  }
+  const findRadius = (cases) => {
+    return Math.cbrt(cases) * 1500;
+  };
   return (
     <div className={"map-container"}>
       <Map center={center} zoom={7}>
@@ -231,138 +233,139 @@ export default function MapContainer(props) {
           url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
         />
         {indiaData && indiaData.stateData
-          ? geoLocation.map(location => {
-            console.log(
-              location.state +
-              "|" +
-              JSON.stringify(indiaData.stateData[location.state])
-            );
-            const locationData = indiaData.stateData[location.state];
-            if (locationData.cases === 0 || location.state === "Kerala")
-              return null;
-            return (
-              <Circle
-                key={location.state}
-                center={[location.latitude, location.longitude]}
-                fillColor="#d14f69"
-                fillOpacity={0.6}
-                stroke={false}
-                radius={15000 + findRadius(locationData.cases)}
-                onMouseOver={e => {
-                  firstLoad && setFirstLoad(false);
-                  e.target.openPopup();
-                }}
-              >
-                <Popup>
-                  <h3>{location.state}</h3>
-                  <div className={cx("popup-line-wrap")}>
-                    <PopupLineItem
-                      legend="cases"
-                      type="Cases"
-                      count={locationData.cases}
-                    />
-                    <PopupLineItem
-                      legend="cured"
-                      type="Cured/Discharged"
-                      count={locationData.cured_discharged}
-                    />
-                    <PopupLineItem
-                      legend="death"
-                      type="Deaths"
-                      count={locationData.Deaths}
-                    />
-                    <hr />
+          ? geoLocation.map((location) => {
+              console.log(
+                location.state +
+                  "|" +
+                  JSON.stringify(indiaData.stateData[location.state])
+              );
+              const locationData = indiaData.stateData[location.state];
+              if (locationData.cases === 0 || location.state === "Kerala")
+                return null;
+              return (
+                <Circle
+                  key={location.state}
+                  center={[location.latitude, location.longitude]}
+                  fillColor="#d14f69"
+                  fillOpacity={0.6}
+                  stroke={false}
+                  radius={15000 + findRadius(locationData.cases)}
+                  onMouseOver={(e) => {
+                    firstLoad && setFirstLoad(false);
+                    e.target.openPopup();
+                  }}
+                >
+                  <Popup>
+                    <h3>{location.state}</h3>
+                    <div className={cx("popup-line-wrap")}>
+                      <PopupLineItem
+                        legend="cases"
+                        type="Cases"
+                        count={locationData.cases}
+                      />
+                      <PopupLineItem
+                        legend="cured"
+                        type="Cured/Discharged"
+                        count={locationData.cured_discharged}
+                      />
+                      <PopupLineItem
+                        legend="death"
+                        type="Deaths"
+                        count={locationData.Deaths}
+                      />
+                      <hr />
                       Helpline: {locationData.helpline}
-                  </div>
-                </Popup>
-              </Circle>
-            );
-          })
+                    </div>
+                  </Popup>
+                </Circle>
+              );
+            })
           : stateData &&
-          geoLocation.map(location => {
-            // console.log(location.state + "|" + JSON.stringify(indiaData.stateData[location.state]))
-            const locationData = stateData[location.state];
-            if (
-              locationData === undefined ||
-              (locationData.confirmedCasesIndian === 0 &&
-                locationData.confirmedCasesForeign === 0) ||
-              location.state === "Kerala"
-            )
-              return null;
-            return (
-              <Circle
-                key={location.state}
-                center={[location.latitude, location.longitude]}
-                fillColor="#d14f69"
-                fillOpacity={0.6}
-                stroke={false}
-                radius={
-                  15000 + findRadius(locationData.confirmedCasesIndian + locationData.confirmedCasesForeign)
-                }
-                onMouseOver={e => {
-                  firstLoad && setFirstLoad(false);
-                  e.target.openPopup();
-                }}
-              >
-
-                {
-                  (locationData.discharged) ?
+            geoLocation.map((location) => {
+              // console.log(location.state + "|" + JSON.stringify(indiaData.stateData[location.state]))
+              const locationData = stateData[location.state];
+              if (
+                locationData === undefined ||
+                (locationData.confirmedCasesIndian === 0 &&
+                  locationData.confirmedCasesForeign === 0) ||
+                location.state === "Kerala"
+              )
+                return null;
+              return (
+                <Circle
+                  key={location.state}
+                  center={[location.latitude, location.longitude]}
+                  fillColor="#d14f69"
+                  fillOpacity={0.6}
+                  stroke={false}
+                  radius={
+                    15000 +
+                    findRadius(
+                      locationData.confirmedCasesIndian +
+                        locationData.confirmedCasesForeign
+                    )
+                  }
+                  onMouseOver={(e) => {
+                    firstLoad && setFirstLoad(false);
+                    e.target.openPopup();
+                  }}
+                >
+                  {locationData.discharged ? (
                     <Circle
                       key={`discharged-${location.state}`}
                       center={[location.latitude, location.longitude]}
                       fillColor="#1df500"
                       fillOpacity={0.7}
                       stroke={false}
-                      radius={400 +findRadius(locationData.discharged)}
-                      onMouseOver={e => {
+                      radius={400 + findRadius(locationData.discharged)}
+                      onMouseOver={(e) => {
                         firstLoad && setFirstLoad(false);
                         e.target.openPopup();
                       }}
-                    ></Circle> : null
-                }
-                {
-                  (locationData.deaths) ?
+                    ></Circle>
+                  ) : null}
+                  {locationData.deaths ? (
                     <Circle
                       key={`deaths-${location.state}`}
                       center={[location.latitude, location.longitude]}
                       fillColor="#f55600"
                       fillOpacity={0.9}
                       stroke={false}
-                      radius={findRadius(locationData.deaths)/2}
-                      onMouseOver={e => {
+                      radius={findRadius(locationData.deaths) / 2}
+                      onMouseOver={(e) => {
                         firstLoad && setFirstLoad(false);
                         e.target.openPopup();
                       }}
-                    ></Circle> : null
-                }
-                <Popup>
-                  <h3>{location.state}</h3>
-                  <div className={cx("popup-line-wrap")}>
-                    <PopupLineItem
-                      legend="cases"
-                      type="Cases"
-                      count={
-                        locationData.confirmedCasesIndian +
-                        locationData.confirmedCasesForeign
-                      }
-                    />
-                    <PopupLineItem
-                      legend="cured"
-                      type="Cured/Discharged"
-                      count={locationData.discharged}
-                    />
-                    <PopupLineItem
-                      legend="death"
-                      type="Deaths"
-                      count={locationData.deaths}
-                    />
-                  </div>
-                </Popup>
-              </Circle>
-            );
-          })}
+                    ></Circle>
+                  ) : null}
+                  <Popup>
+                    <h3>{location.state}</h3>
+                    <div className={cx("popup-line-wrap")}>
+                      <PopupLineItem
+                        legend="cases"
+                        type="Cases"
+                        count={
+                          locationData.confirmedCasesIndian +
+                          locationData.confirmedCasesForeign
+                        }
+                      />
+                      <PopupLineItem
+                        legend="cured"
+                        type="Cured/Discharged"
+                        count={locationData.discharged}
+                      />
+                      <PopupLineItem
+                        legend="death"
+                        type="Deaths"
+                        count={locationData.deaths}
+                      />
+                    </div>
+                  </Popup>
+                </Circle>
+              );
+            })}
         {districtData &&
-          districtGeoLocation.map(location => {
+          districtGeoLocation.map((location) => {
             // console.log(location.state + "|" + JSON.stringify(indiaData.stateData[location.state]))
             const locationData = districtData.kerala[location.district];
             if (
@@ -378,58 +381,53 @@ export default function MapContainer(props) {
                 fillOpacity={0.6}
                 stroke={false}
                 radius={15000 + findRadius(locationData.corona_positive)}
-                onMouseOver={e => {
+                onMouseOver={(e) => {
                   firstLoad && setFirstLoad(false);
                   e.target.openPopup();
                 }}
               >
-
-
-                {
-                  (locationData.total_hospitalised) ?
-                    <Circle
-                      key={`hospitilized-${location.district}`}
-                      center={[location.latitude, location.longitude]}
-                      fillColor="#04dbd4"
-                      fillOpacity={0.8}
-                      stroke={false}
-                      radius={findRadius(locationData.total_hospitalised)/4}
-                      onMouseOver={e => {
-                        firstLoad && setFirstLoad(false);
-                        e.target.openPopup();
-                      }}
-                    ></Circle> : null
-                }
-                {
-                  (locationData.cured_discharged) ?
-                    <Circle
-                      key={`cured-${location.district}`}
-                      center={[location.latitude, location.longitude]}
-                      fillColor="#1df500"
-                      fillOpacity={0.7}
-                      stroke={false}
-                      radius={400 +findRadius(locationData.cured_discharged)}
-                      onMouseOver={e => {
-                        firstLoad && setFirstLoad(false);
-                        e.target.openPopup();
-                      }}
-                    ></Circle> : null
-                }
-                {
-                  (locationData.deaths) ?
-                    <Circle
-                      key={`deaths-${location.district}`}
-                      center={[location.latitude, location.longitude]}
-                      fillColor="#f55600"
-                      fillOpacity={0.9}
-                      stroke={false}
-                      radius={findRadius(locationData.deaths)/2}
-                      onMouseOver={e => {
-                        firstLoad && setFirstLoad(false);
-                        e.target.openPopup();
-                      }}
-                    ></Circle> : null
-                }
+                {locationData.total_hospitalised ? (
+                  <Circle
+                    key={`hospitilized-${location.district}`}
+                    center={[location.latitude, location.longitude]}
+                    fillColor="#04dbd4"
+                    fillOpacity={0.8}
+                    stroke={false}
+                    radius={findRadius(locationData.total_hospitalised) / 4}
+                    onMouseOver={(e) => {
+                      firstLoad && setFirstLoad(false);
+                      e.target.openPopup();
+                    }}
+                  ></Circle>
+                ) : null}
+                {locationData.cured_discharged ? (
+                  <Circle
+                    key={`cured-${location.district}`}
+                    center={[location.latitude, location.longitude]}
+                    fillColor="#1df500"
+                    fillOpacity={0.7}
+                    stroke={false}
+                    radius={400 + findRadius(locationData.cured_discharged)}
+                    onMouseOver={(e) => {
+                      firstLoad && setFirstLoad(false);
+                      e.target.openPopup();
+                    }}
+                  ></Circle>
+                ) : null}
+                {locationData.deaths ? (
+                  <Circle
+                    key={`deaths-${location.district}`}
+                    center={[location.latitude, location.longitude]}
+                    fillColor="#f55600"
+                    fillOpacity={0.9}
+                    stroke={false}
+                    radius={findRadius(locationData.deaths) / 2}
+                    onMouseOver={(e) => {
+                      firstLoad && setFirstLoad(false);
+                      e.target.openPopup();
+                    }}
+                  ></Circle>
+                ) : null}
                 {location.state !== "Kerala" && (
                   // firstLoad ?
                   // <Tooltip permanent>
@@ -480,7 +478,7 @@ export default function MapContainer(props) {
               </Circle>
             );
           })}
-        {internationalData.map((location, index) => {
+        {/* {internationalData.map((location, index) => {
           if (location.country_region === "India") {
             if (countryStats === null) setCountryStats(location);
             return null;
@@ -570,14 +568,14 @@ export default function MapContainer(props) {
               </Popup>
             </Circle>
           );
-        })}
+        })} */}
         {viewTestCenters &&
-          testCenters.map(testCenter => {
+          testCenters.map((testCenter) => {
             return (
               <Marker
                 key={testCenter.institution}
                 position={[testCenter.longitude, testCenter.latitude]}
-                onMouseOver={e => {
+                onMouseOver={(e) => {
                   e.target.openPopup();
                 }}
               >
