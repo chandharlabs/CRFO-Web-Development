@@ -40,7 +40,7 @@ export default function MapContainer(props) {
   const [sensorData, setSensorData] = useState(null);
 
   const [firstLoad, setFirstLoad] = useState(true);
-
+  
   useEffect(() => {
     console.log("Fetching Data");
 
@@ -55,7 +55,6 @@ export default function MapContainer(props) {
         setSensorData(json)
       })
       .catch( () => console.error("Encountered error when accessing sensor data"))
-
   }, []);
 
   return (
@@ -110,7 +109,6 @@ export default function MapContainer(props) {
               </Circle>
             );
           })}
-
         {viewTestCenters &&
           testCenters.map((testCenter) => {
             return (
