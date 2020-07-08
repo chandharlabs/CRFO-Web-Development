@@ -97,7 +97,7 @@ export default function IndiaData(props) {
         {isDataLoaded && (
           <section className={cx("list-content")}>
             <div className="switch-text">
-              Show test centers
+              Show measurement locations
               <label className="switch">
                 <input
                   type="checkbox"
