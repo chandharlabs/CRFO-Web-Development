@@ -93,8 +93,8 @@ export default function IndiaData(props) {
   return (
     <>
       <section className={cx("list-wrapper")}>
-        {!isDataLoaded && <div>Loading...</div>}
-        {isDataLoaded && (
+        {/* {!isDataLoaded && <div>Loading...!!</div>} */}
+        {//isDataLoaded && (
           <section className={cx("list-content")}>
             <div className="switch-text">
               Show measurement locations
@@ -126,7 +126,7 @@ export default function IndiaData(props) {
               onStateClick={handleStateClick}
             />
           </section>
-        )}
+        }
       </section>
     </>
   );
