@@ -40,21 +40,23 @@ export default function MapContainer(props) {
   const [sensorData, setSensorData] = useState(null);
 
   const [firstLoad, setFirstLoad] = useState(true);
-  
+
   useEffect(() => {
     console.log("Fetching Data");
 
-      fetch("/sensorData.json")
-      .then(response => {
+    fetch("/sensorData.json")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error("HTTP error " + response.status)
+          throw new Error("HTTP error " + response.status);
         }
-        return response.json()
+        return response.json();
       })
-      .then(json => {
-        setSensorData(json)
+      .then((json) => {
+        setSensorData(json);
       })
-      .catch( () => console.error("Encountered error when accessing sensor data"))
+      .catch(() =>
+        console.error("Encountered error when accessing sensor data")
+      );
   }, []);
 
   return (
@@ -67,8 +69,7 @@ export default function MapContainer(props) {
         {sensorData &&
           testCenters.map((location) => {
             const locationData = sensorData[location.LocationCode];
-            if (locationData === undefined)
-              return null;
+            if (locationData === undefined) return null;
             return (
               <Circle
                 key={location.city}
@@ -76,9 +77,7 @@ export default function MapContainer(props) {
                 fillColor="#d14f69"
                 fillOpacity={0.6}
                 stroke={false}
-                radius={
-                  15000
-                }
+                radius={15000}
                 onMouseOver={(e) => {
                   firstLoad && setFirstLoad(false);
                   e.target.openPopup();
@@ -90,9 +89,7 @@ export default function MapContainer(props) {
                     <PopupLineItem
                       legend="cured"
                       type="Low"
-                      count={
-                        locationData["470 - 790 MHz (DVB)"].PVS
-                      }
+                      count={locationData["470 - 790 MHz (DVB)"].PVS}
                     />
                     <PopupLineItem
                       legend="cases"
@@ -120,7 +117,7 @@ export default function MapContainer(props) {
                 }}
               >
                 <Popup>
-                  <h3>{(testCenter.city, + ", ", + testCenter.state)}</h3>
+                  <h3>{testCenter.city + ", " + testCenter.state}</h3>
                   <a
                     href={
                       "https://www.google.com/maps/search/?api=1&query=" +
