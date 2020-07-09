@@ -67,24 +67,24 @@ export default function MapContainer(props) {
           url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
         />
         {sensorData &&
-          testCenters.map((location) => {
-            const locationData = sensorData[location.LocationCode];
+          testCenters.map((testCenter) => {
+            const locationData = sensorData[testCenter.LocationCode];
             if (locationData === undefined) return null;
             return (
               <Circle
-                key={location.city}
-                center={[location.longitude, location.latitude]}
+                key={testCenter.city}
+                center={[testCenter.longitude, testCenter.latitude]}
                 fillColor="#d14f69"
                 fillOpacity={0.6}
                 stroke={false}
-                radius={15000}
+                radius={50000}
                 onMouseOver={(e) => {
                   firstLoad && setFirstLoad(false);
                   e.target.openPopup();
                 }}
               >
                 <Popup>
-                  <h3>{location.city + ", " + location.state}</h3>
+                  <h3>{testCenter.city + ", " + testCenter.state}</h3>
                   <div className={cx("popup-line-wrap")}>
                     <PopupLineItem
                       legend="cured"
@@ -102,22 +102,6 @@ export default function MapContainer(props) {
                       count={locationData["890 - 960 MHz (GSM900)"].PVS}
                     />
                   </div>
-                </Popup>
-              </Circle>
-            );
-          })}
-        {viewTestCenters &&
-          testCenters.map((testCenter) => {
-            return (
-              <Marker
-                key={testCenter.city}
-                position={[testCenter.longitude, testCenter.latitude]}
-                onMouseOver={(e) => {
-                  e.target.openPopup();
-                }}
-              >
-                <Popup>
-                  <h3>{testCenter.city + ", " + testCenter.state}</h3>
                   <a
                     href={
                       "https://www.google.com/maps/search/?api=1&query=" +
@@ -131,6 +115,16 @@ export default function MapContainer(props) {
                     Open in Maps
                   </a>
                 </Popup>
+              </Circle>
+            );
+          })}
+        {viewTestCenters &&
+          testCenters.map((testCenter) => {
+            return (
+              <Marker
+                key={testCenter.city}
+                position={[testCenter.longitude, testCenter.latitude]}
+              >
               </Marker>
             );
           })}
