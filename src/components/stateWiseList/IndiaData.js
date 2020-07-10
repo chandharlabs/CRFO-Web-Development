@@ -7,19 +7,17 @@ import DetailedTile from './DetailedTile';
 import stateGeoLocation from '../../data/geoLocation';
 import classNames from 'classnames/bind';
 import StateCenterMenu from '../statelist';
+import testCenters from '../../data/testCenters';
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 
 export default function IndiaData(props) {
   const { indiaData, onStateSelect, viewTestCenters } = props;
   const isDataLoaded = indiaData !== undefined;
   const stateWiseData = indiaData.regional;
-  const handleStateClick = (stateData) => {
-    // filter Map - starts
-    let selectedStateCoordinates = stateGeoLocation.filter(
-      (aState, index) => aState.state === stateData.loc
-    );
-    // filter Map - ends
-    onStateSelect(stateData, selectedStateCoordinates);
+  const handleStateClick = (sensorData) => {
+    let selectedTestCenter = testCenters.find( tc => tc.LocationCode == sensorData.LocationCode);
+    let selectedStateCoordinates = [Number(selectedTestCenter.longitude), Number(selectedTestCenter.latitude)]
+    onStateSelect({}, selectedStateCoordinates);
   };
   const handleTestCentersToggle = () => {
     props.onTestCenterToggle(!viewTestCenters);

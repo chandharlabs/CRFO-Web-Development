@@ -37,12 +37,13 @@ class App extends Component {
     this.setState({
       indiaData: indiaSensorData
       // selectedLocationData: {
-      //   summary: indiaData.summary //TODO: Figure out how summary data is structured, see DetailedTile.js
+      //   summary: indiaData.summary
       // }
     });
   };
 
   handleStateSelect = (stateData, selectedLocationCoordinate) => {
+    console.log("Selected Coord", selectedLocationCoordinate)
     let selectedLocationData = {
       summary: stateData
     };

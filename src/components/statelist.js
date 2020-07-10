@@ -40,7 +40,7 @@ export default function StateCenterMenu(props) {
                 {item.sensors.map((sensor, index) => {
                   return (
                     <ListItem button>
-                      <ListItemText primary={sensor.city} onClick={()=>alert("Hello")}/>
+                      <ListItemText primary={sensor.city} onClick={()=>onStateClick(sensor)}/>
                     </ListItem>
                   );
                 })}

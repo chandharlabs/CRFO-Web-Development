@@ -31,10 +31,7 @@ export default function MapContainer(props) {
   } = props;
 
   if (selectedLocCoordinate && selectedLocCoordinate.length) {
-    center = [
-      selectedLocCoordinate[0].latitude,
-      selectedLocCoordinate[0].longitude,
-    ];
+    center = [...selectedLocCoordinate];
   }
 
   const [sensorData, setSensorData] = useState(null);
