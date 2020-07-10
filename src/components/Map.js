@@ -70,6 +70,7 @@ export default function MapContainer(props) {
           })
         });
         onStateWiseDataGetSuccess(sensorListByState);
+        console.log("Fetched data", json);
       })
       .catch((err) => {
         console.error('Encountered error when accessing sensor data', err)
