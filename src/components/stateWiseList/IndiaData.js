@@ -3,17 +3,15 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import StatWiseList from './StatWiseList';
 import DetailedTile from './DetailedTile';
 import stateGeoLocation from '../../data/geoLocation';
 import classNames from 'classnames/bind';
 import StateCenterMenu from '../statelist';
 const cx = classNames.bind(require('./stateWiseList.module.css'));
+
 export default function IndiaData(props) {
   const { indiaData, onStateSelect, viewTestCenters } = props;
-  const isDataLoaded =
-    indiaData && Object.keys(indiaData.summary || {}).length > 0;
-  const summary = indiaData.summary;
+  const isDataLoaded = indiaData !== undefined;
   const stateWiseData = indiaData.regional;
   const handleStateClick = (stateData) => {
     // filter Map - starts
@@ -103,9 +101,8 @@ export default function IndiaData(props) {
   return (
     <>
       <section className={cx('list-wrapper')}>
-        {/* {!isDataLoaded && <div>Loading...!!</div>} */}
-        {
-          //isDataLoaded && (
+        {!isDataLoaded && <div>Loading...!!</div>}
+        {isDataLoaded && (
           <section className={cx('list-content')}>
             <div className="switch-text">
               Show measurement locations
@@ -136,9 +133,11 @@ export default function IndiaData(props) {
               stateWiseData={indianStatsByType[selectedType].tileList}
               onStateClick={handleStateClick}
             /> */}
-            <StateCenterMenu />
+            <StateCenterMenu
+            stateWiseData={indiaData}
+            onStateClick={handleStateClick}/>
           </section>
-        }
+        )}
       </section>
     </>
   );

@@ -52,22 +52,25 @@ export default function MapContainer(props) {
         return response.json();
       })
       .then((json) => {
-        console.log(json)
         setSensorData(json);
-        // TODO: Group json data by state and pass to onStateWiseDataGetSuccess
-        let sensorListByState = {};
+        let sensorListByState = [];
         json.forEach((sensorReading) => {
           const testCenter = testCenters.find(
             (center) => center.LocationCode == sensorReading.LocationCode
           );
-          const sensorCity = {
+          
+          let stateObj = sensorListByState.find( state => state == testCenter.state )
+          if ( stateObj === undefined ) {
+            stateObj = {
+              state: testCenter.state,
+              sensors: []
+            }
+            sensorListByState.push(stateObj)
+          }
+          stateObj.sensors.push({
             city: testCenter.city,
-            ...sensorReading,
-          };
-
-          if (!sensorListByState[testCenter.state])
-            sensorListByState[testCenter.state] = [];
-          sensorListByState[testCenter.state].push(sensorCity);
+            ...sensorReading
+          })
         });
         onStateWiseDataGetSuccess(sensorListByState);
       })
