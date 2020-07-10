@@ -33,16 +33,17 @@ class App extends Component {
 
   mobileWindowSizeBreakPoint = 767;
 
-  handleStateWiseDataSuccess = indiaData => {
+  handleStateWiseDataSuccess = indiaSensorData => {
     this.setState({
-      indiaData: indiaData,
-      selectedLocationData: {
-        summary: indiaData.summary
-      }
+      indiaData: indiaSensorData
+      // selectedLocationData: {
+      //   summary: indiaData.summary
+      // }
     });
   };
 
   handleStateSelect = (stateData, selectedLocationCoordinate) => {
+    console.log("Selected Coord", selectedLocationCoordinate)
     let selectedLocationData = {
       summary: stateData
     };
@@ -158,14 +159,6 @@ class App extends Component {
                     fullWidth={true}
                     className={`${cx("customized-dialog-wrapper")}`}
                   >
-                    {/* <DialogTitle
-                      id="customized-dialog-title"
-                      onClose={this.handleClose}
-                      className="customized-dialog-title"
-                    >
-                      
-                    </DialogTitle> */}
-                    {/* {selectedLocationData.loc} */}
                     <IconButton
                       aria-label="close"
                       onClick={this.handleClose}
