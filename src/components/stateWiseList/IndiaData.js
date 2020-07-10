@@ -7,7 +7,7 @@ import StatWiseList from './StatWiseList';
 import DetailedTile from './DetailedTile';
 import stateGeoLocation from '../../data/geoLocation';
 import classNames from 'classnames/bind';
-import stateCenterMenu from '../statelist.jsx';
+import StateCenterMenu from '../statelist';
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 export default function IndiaData(props) {
   const { indiaData, onStateSelect, viewTestCenters } = props;
@@ -132,11 +132,11 @@ export default function IndiaData(props) {
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
-            {/* <StatWiseList
+            {/* <StateWiseList
               stateWiseData={indianStatsByType[selectedType].tileList}
               onStateClick={handleStateClick}
             /> */}
-            <stateCenterMenu />
+            <StateCenterMenu />
           </section>
         }
       </section>

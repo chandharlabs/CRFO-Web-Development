@@ -9,7 +9,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import testCenters from '../data/testCenters';
 //const drawerMenuItemData = [];
 
-export default function stateCenterMenu(props) {
+export default function StateCenterMenu(props) {
   const [selectedIndex, setSelectedIndex] = React.useState('');
   //const drawerMenuItemData = testCenters;
   const handleClick = (index) => {
@@ -37,15 +37,7 @@ export default function stateCenterMenu(props) {
     drawerMenuItemData.push(statecityindex);
   });
   return (
-    <List
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Nested List Items
-        </ListSubheader>
-      }
-    >
+    <List component="nav">
       {drawerMenuItemData.map((item, index) => {
         return (
           <List>
@@ -64,7 +56,7 @@ export default function stateCenterMenu(props) {
                 {item.cities.map((sub, index) => {
                   return (
                     <ListItem button>
-                      <ListItemText primary={sub.name} />
+                      <ListItemText primary={sub} />
                     </ListItem>
                   );
                 })}
