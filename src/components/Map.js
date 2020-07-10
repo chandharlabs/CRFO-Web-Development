@@ -52,9 +52,10 @@ export default function MapContainer(props) {
         return response.json();
       })
       .then((json) => {
+        console.log(json)
         setSensorData(json);
         // TODO: Group json data by state and pass to onStateWiseDataGetSuccess
-        sensorListByState = {};
+        let sensorListByState = {};
         json.forEach((sensorReading) => {
           const testCenter = testCenters.find(
             (center) => center.LocationCode == sensorReading.LocationCode
@@ -68,11 +69,11 @@ export default function MapContainer(props) {
             sensorListByState[testCenter.state] = [];
           sensorListByState[testCenter.state].push(sensorCity);
         });
-        onStateWiseDataGetSuccess(sensorListByState)
+        onStateWiseDataGetSuccess(sensorListByState);
       })
-      .catch(() =>
-        console.error('Encountered error when accessing sensor data')
-      );
+      .catch((err) => {
+        console.error('Encountered error when accessing sensor data', err)
+      });
   }, []);
 
   return (
