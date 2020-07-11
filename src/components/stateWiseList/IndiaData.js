@@ -3,21 +3,36 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+
 import DetailedTile from './DetailedTile';
 import stateGeoLocation from '../../data/geoLocation';
 import classNames from 'classnames/bind';
 import StateCenterMenu from '../statelist';
-import testCenters from '../../data/testCenters';
+<
+// import testCenters from '../../data/testCenters';
+// const cx = classNames.bind(require('./stateWiseList.module.css'));
+
+
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 
 export default function IndiaData(props) {
   const { indiaData, onStateSelect, viewTestCenters } = props;
   const isDataLoaded = indiaData !== undefined;
   const stateWiseData = indiaData.regional;
-  const handleStateClick = (sensorData) => {
-    let selectedTestCenter = testCenters.find( tc => tc.LocationCode == sensorData.LocationCode);
-    let selectedStateCoordinates = [Number(selectedTestCenter.longitude), Number(selectedTestCenter.latitude)]
-    onStateSelect({}, selectedStateCoordinates);
+
+//   const handleStateClick = (sensorData) => {
+//     let selectedTestCenter = testCenters.find( tc => tc.LocationCode == sensorData.LocationCode);
+//     let selectedStateCoordinates = [Number(selectedTestCenter.longitude), Number(selectedTestCenter.latitude)]
+//     onStateSelect({}, selectedStateCoordinates);
+
+  const handleStateClick = (stateData) => {
+    // filter Map - starts
+    let selectedStateCoordinates = stateGeoLocation.filter(
+      (aState, index) => aState.state === stateData.loc
+    );
+    // filter Map - ends
+    onStateSelect(stateData, selectedStateCoordinates);
+
   };
   const handleTestCentersToggle = () => {
     props.onTestCenterToggle(!viewTestCenters);
@@ -99,8 +114,14 @@ export default function IndiaData(props) {
   return (
     <>
       <section className={cx('list-wrapper')}>
-        {!isDataLoaded && <div>Loading...!!</div>}
-        {isDataLoaded && (
+// <<<<<<< master
+//         {!isDataLoaded && <div>Loading...!!</div>}
+//         {isDataLoaded && (
+// =======
+//         {/* {!isDataLoaded && <div>Loading...!!</div>} */}
+//         {
+//           //isDataLoaded && (
+// >>>>>>> master
           <section className={cx('list-content')}>
             <div className="switch-text">
               Show measurement locations
@@ -131,9 +152,11 @@ export default function IndiaData(props) {
               stateWiseData={indianStatsByType[selectedType].tileList}
               onStateClick={handleStateClick}
             /> */}
+
             <StateCenterMenu
             stateWiseData={indiaData}
             onStateClick={handleStateClick}/>
+
           </section>
         )}
       </section>
