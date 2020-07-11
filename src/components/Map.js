@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Circle, Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import React, { useState, useEffect } from "react";
+import { Circle, Map, Marker, Popup, TileLayer } from "react-leaflet";
 // TODO: Remove papaparser from yarn dependency list
-import testCenters from '../data/testCenters.js';
-import classNames from 'classnames/bind';
-const cx = classNames.bind(require('./map.module.css'));
+import testCenters from "../data/testCenters.js";
+import classNames from "classnames/bind";
+const cx = classNames.bind(require("./map.module.css"));
 
 let center = [9.5915668, 76.5221531];
 const PopupLineItem = ({ type, count, legend }) => {
   return (
     <>
-      <div className={cx(['popup-legend', 'legend-' + legend])}></div>
-      <div className={cx('count-type')}>{type}</div>
-      <div className={cx('counts')}>
+      <div className={cx(["popup-legend", "legend-" + legend])}></div>
+      <div className={cx("count-type")}>{type}</div>
+      <div className={cx("counts")}>
         {count !== undefined && count !== null
           ? count.toLocaleString(navigator.language, {
               maximumFractionDigits: 2,
             })
-          : ''}
+          : ""}
       </div>
     </>
   );
@@ -31,7 +31,10 @@ export default function MapContainer(props) {
   } = props;
 
   if (selectedLocCoordinate && selectedLocCoordinate.length) {
-    center = [...selectedLocCoordinate];
+    center = [
+      selectedLocCoordinate[0].latitude,
+      selectedLocCoordinate[0].longitude,
+    ];
   }
 
   const [sensorData, setSensorData] = useState(null);
@@ -39,46 +42,25 @@ export default function MapContainer(props) {
   const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
-    console.log('Fetching Data');
+    console.log("Fetching Data");
 
-    fetch('/sensorData.json')
+    fetch("/sensorData.json")
       .then((response) => {
         if (!response.ok) {
-          throw new Error('HTTP error ' + response.status);
+          throw new Error("HTTP error " + response.status);
         }
         return response.json();
       })
       .then((json) => {
         setSensorData(json);
-        let sensorListByState = [];
-        json.forEach((sensorReading) => {
-          const testCenter = testCenters.find(
-            (center) => center.LocationCode == sensorReading.LocationCode
-          );
-          
-          let stateObj = sensorListByState.find( state => state == testCenter.state )
-          if ( stateObj === undefined ) {
-            stateObj = {
-              state: testCenter.state,
-              sensors: []
-            }
-            sensorListByState.push(stateObj)
-          }
-          stateObj.sensors.push({
-            city: testCenter.city,
-            ...sensorReading
-          })
-        });
-        onStateWiseDataGetSuccess(sensorListByState);
-        console.log("Fetched data", json);
       })
-      .catch((err) => {
-        console.error('Encountered error when accessing sensor data', err)
-      });
+      .catch(() =>
+        console.error("Encountered error when accessing sensor data")
+      );
   }, []);
 
   return (
-    <div className={'map-container'}>
+    <div className={"map-container"}>
       <Map center={center} zoom={7}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -102,29 +84,29 @@ export default function MapContainer(props) {
                 }}
               >
                 <Popup>
-                  <h3>{testCenter.city + ', ' + testCenter.state}</h3>
-                  <div className={cx('popup-line-wrap')}>
+                  <h3>{testCenter.city + ", " + testCenter.state}</h3>
+                  <div className={cx("popup-line-wrap")}>
                     <PopupLineItem
                       legend="cured"
                       type="Low"
-                      count={locationData['470 - 790 MHz (DVB)'].PVS}
+                      count={locationData["470 - 790 MHz (DVB)"].PVS}
                     />
                     <PopupLineItem
                       legend="cases"
                       type="Mid"
-                      count={locationData['830 - 890 MHz (LTE)'].PVS}
+                      count={locationData["830 - 890 MHz (LTE)"].PVS}
                     />
                     <PopupLineItem
                       legend="death"
                       type="High"
-                      count={locationData['890 - 960 MHz (GSM900)'].PVS}
+                      count={locationData["890 - 960 MHz (GSM900)"].PVS}
                     />
                   </div>
                   <a
                     href={
-                      'https://www.google.com/maps/search/?api=1&query=' +
+                      "https://www.google.com/maps/search/?api=1&query=" +
                       testCenter.longitude +
-                      ',' +
+                      "," +
                       testCenter.latitude
                     }
                     target="_blank"
@@ -142,7 +124,8 @@ export default function MapContainer(props) {
               <Marker
                 key={testCenter.city}
                 position={[testCenter.longitude, testCenter.latitude]}
-              ></Marker>
+              >
+              </Marker>
             );
           })}
       </Map>
