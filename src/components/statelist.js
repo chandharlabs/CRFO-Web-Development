@@ -55,8 +55,15 @@ export default function StateCenterMenu(props) {
               <List component="div" disablePadding>
                 {item.cities.map((sub, index) => {
                   return (
-                    <ListItem button>
-                      <ListItemText primary={sub} />
+                    <ListItem
+                      button
+                      key={index}
+                      onClick={() => {
+                        console.log(sub + index);
+                        props.handleStateClick(sub);
+                      }}
+                    >
+                      <ListItemText primary={sub} key={sub} />
                     </ListItem>
                   );
                 })}
