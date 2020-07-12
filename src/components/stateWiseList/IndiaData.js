@@ -8,6 +8,7 @@ import DetailedTile from './DetailedTile';
 import stateGeoLocation from '../../data/geoLocation';
 import classNames from 'classnames/bind';
 import StateCenterMenu from '../statelist';
+import testCenter from '../../data/testCenters';
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 export default function IndiaData(props) {
   const { indiaData, onStateSelect, viewTestCenters } = props;
@@ -26,7 +27,15 @@ export default function IndiaData(props) {
   const handleTestCentersToggle = () => {
     props.onTestCenterToggle(!viewTestCenters);
   };
-
+  const handleTestClick = (center) => {
+    console.log(center);
+    let selectedStateCoordinates = testCenter.filter((location) => {
+      console.log(location.city === center);
+      return location.city === center;
+    });
+    console.log(selectedStateCoordinates);
+    onStateSelect(selectedStateCoordinates);
+  };
   const statByType = { tileList: [], total: 0, styleClasses: [] };
   const initialStatsByType = {
     death: statByType,
@@ -136,7 +145,7 @@ export default function IndiaData(props) {
               stateWiseData={indianStatsByType[selectedType].tileList}
               onStateClick={handleStateClick}
             /> */}
-            <StateCenterMenu />
+            <StateCenterMenu handleStateClick={handleTestClick} />
           </section>
         }
       </section>
