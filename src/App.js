@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
+import AppTable from './components/stateWiseList/locationwiseChart.js';
 const cx = classNames.bind(require('./App.module.css'));
 
 class App extends Component {
@@ -131,12 +132,13 @@ class App extends Component {
                 {dimensions.width > this.mobileWindowSizeBreakPoint && (
                   <>
                     <div className={cx('new-wrapper')}>
-                      <SelectedLocationData
+                      {/* <SelectedLocationData
                         locationData={{
                           ...selectedLocationData,
                           loc: newsSearchKeyword,
                         }}
-                      />
+                      /> */}
+                      <AppTable />
                     </div>
                     <span
                       className={cx('toggle-button')}
@@ -170,12 +172,12 @@ class App extends Component {
                       X
                     </IconButton>
                     <div className={`${cx('new-wrapper')} ${cx('test')}`}>
-                      <SelectedLocationData
+                      {/* <SelectedLocationData
                         locationData={{
                           ...selectedLocationData,
                           loc: newsSearchKeyword,
                         }}
-                      />
+                      /> */}
                     </div>
                   </Dialog>
                 )}

@@ -39,7 +39,7 @@ export default function MapContainer(props) {
     );
     center = [
       selectedLocCoordinate[0].longitude,
-      selectedLocCoordinate[0].latitude,
+      selectedLocCoordinate[0].latitude - 1.5,
     ];
   }
 
