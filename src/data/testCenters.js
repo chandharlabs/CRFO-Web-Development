@@ -7,11 +7,11 @@ const testCenters = [
     LocationCode: 'L1',
   },
   {
-    state: "Arunachal Pradesh",
-    city: "Itanagar",
+    state: 'Arunachal Pradesh',
+    city: 'Itanagar',
     latitude: 93.6053,
-    longitude:27.0844 ,
-    LocationCode: "L2",
+    longitude: 27.0844,
+    LocationCode: 'L2',
   },
   {
     state: 'Assam',
@@ -28,11 +28,11 @@ const testCenters = [
     LocationCode: 'L4',
   },
   {
-    state: "Chhattisgarh",
-    city: "Raipur",
+    state: 'Chhattisgarh',
+    city: 'Raipur',
     latitude: 81.6296,
     longitude: 21.2514,
-    LocationCode: "L5",
+    LocationCode: 'L5',
   },
   {
     state: 'Delhi',
@@ -42,11 +42,11 @@ const testCenters = [
     LocationCode: 'L6',
   },
   {
-    state: "Goa",
-    city: "Ponda",
+    state: 'Goa',
+    city: 'Ponda',
     latitude: 73.979225,
     longitude: 15.425651,
-    LocationCode: "L7",
+    LocationCode: 'L7',
   },
   {
     state: 'Gujarat',
@@ -77,11 +77,11 @@ const testCenters = [
     LocationCode: 'L11',
   },
   {
-    state: "Jharkhand",
-    city: "Ranchi", 
+    state: 'Jharkhand',
+    city: 'Ranchi',
     latitude: 85.3096,
     longitude: 23.3441,
-    LocationCode: "L12",
+    LocationCode: 'L12',
   },
   {
     state: 'Karnataka',
@@ -119,32 +119,32 @@ const testCenters = [
     LocationCode: 'L17',
   },
   {
-    state: "Manipur",
-    city: "Imphal",
+    state: 'Manipur',
+    city: 'Imphal',
     latitude: 93.9368,
-    longitude:24.8170 ,
-    LocationCode: "L18",
+    longitude: 24.817,
+    LocationCode: 'L18',
   },
   {
-    state: "Meghalaya",
-    city: "Shillong",
+    state: 'Meghalaya',
+    city: 'Shillong',
     latitude: 91.8933,
     longitude: 25.5788,
-    LocationCode: "L19",
+    LocationCode: 'L19',
   },
   {
-    state: "Mizoram",
-    city: "Aizawl",
+    state: 'Mizoram',
+    city: 'Aizawl',
     latitude: 92.7173,
     longitude: 23.7307,
-    LocationCode: "L20",
+    LocationCode: 'L20',
   },
   {
-    state: "Nagaland",
-    city: "Kohima",
+    state: 'Nagaland',
+    city: 'Kohima',
     latitude: 94.1086,
     longitude: 25.6751,
-    LocationCode: "L21",
+    LocationCode: 'L21',
   },
   {
     state: 'North East',
@@ -161,18 +161,18 @@ const testCenters = [
     LocationCode: 'L23',
   },
   {
-    state: "Puducherry",
-    city: "Karaikal",
+    state: 'Puducherry',
+    city: 'Karaikal',
     latitude: 79.845715,
     longitude: 10.988522,
-    LocationCode: "L24",
+    LocationCode: 'L24',
   },
 
   {
     state: 'Punjab',
     city: 'Ludhiana',
     latitude: 75.8573,
-    longitude: 30.9010,
+    longitude: 30.901,
     LocationCode: 'L25',
   },
   {
@@ -183,11 +183,11 @@ const testCenters = [
     LocationCode: 'L26',
   },
   {
-    state: "Sikkim",
-    city: "Gangtok",
+    state: 'Sikkim',
+    city: 'Gangtok',
     latitude: 88.6138,
-    longitude:27.3314 ,
-    LocationCode: "L27",
+    longitude: 27.3314,
+    LocationCode: 'L27',
   },
 
   {
@@ -198,18 +198,18 @@ const testCenters = [
     LocationCode: 'L28',
   },
   {
-    state: "Telangana",
-    city: "Hyderabad",
+    state: 'Telangana',
+    city: 'Hyderabad',
     latitude: 78.4359425,
     longitude: 17.5688383,
-    LocationCode: "L29",
+    LocationCode: 'L29',
   },
   {
-    state: "Tiripura",
-    city: "Agartala",
+    state: 'Tiripura',
+    city: 'Agartala',
     latitude: 91.2868,
-    longitude:23.8315 ,
-    LocationCode: "L30",
+    longitude: 23.8315,
+    LocationCode: 'L30',
   },
   {
     state: 'Uttar Pradesh (East)',
@@ -226,11 +226,11 @@ const testCenters = [
     LocationCode: 'L32',
   },
   {
-    state: "Uttarakhand",
-    city: "Dehradun",
+    state: 'Uttarakhand',
+    city: 'Dehradun',
     latitude: 78.0322,
     longitude: 30.3165,
-    LocationCode: "L33",
+    LocationCode: 'L33',
   },
   {
     state: 'West Bengal',
@@ -245,7 +245,7 @@ const testCenters = [
     latitude: 88.363044,
     longitude: 22.562627,
     LocationCode: 'L35',
-  }
+  },
 ];
 
 export default testCenters;
