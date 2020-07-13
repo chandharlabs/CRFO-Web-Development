@@ -127,7 +127,7 @@ export default function IndiaData(props) {
                 <span className="slider round"></span>
               </label>
             </div>
-            <DetailedTile
+            {/* <DetailedTile
               locationData={indiaData.summary}
               handleCaseTypeClick={handleCaseTypeClick}
             />
@@ -140,7 +140,7 @@ export default function IndiaData(props) {
                   {indianStatsByType[selectedType].total}{' '}
                 </ListItemSecondaryAction>
               </ListItem>
-            </List>
+            </List> */}
             {/* <StateWiseList
               stateWiseData={indianStatsByType[selectedType].tileList}
               onStateClick={handleStateClick}

@@ -94,18 +94,24 @@ export default function MapContainer(props) {
                   <div className={cx('popup-line-wrap')}>
                     <PopupLineItem
                       legend="cured"
-                      type="Low"
-                      count={locationData['470 - 790 MHz (DVB)'].PVS}
+                      type="470 - 790 MHz (DVB)"
+                      count={
+                        locationData['470 - 790 MHz (DVB)'].PVS * 100 + '%'
+                      }
                     />
                     <PopupLineItem
                       legend="cases"
-                      type="Mid"
-                      count={locationData['830 - 890 MHz (LTE)'].PVS}
+                      type="830 - 890 MHz (LTE)"
+                      count={
+                        locationData['830 - 890 MHz (LTE)'].PVS * 100 + '%'
+                      }
                     />
                     <PopupLineItem
                       legend="death"
-                      type="High"
-                      count={locationData['890 - 960 MHz (GSM900)'].PVS}
+                      type="890 - 960 MHz (GSM900)"
+                      count={
+                        locationData['890 - 960 MHz (GSM900)'].PVS * 100 + '%'
+                      }
                     />
                   </div>
                   <a
