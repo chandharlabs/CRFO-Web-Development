@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Circle, Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Circle, Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet';
 // TODO: Remove papaparser from yarn dependency list
 import testCenters from '../data/testCenters.js';
 import classNames from 'classnames/bind';
@@ -67,7 +67,8 @@ export default function MapContainer(props) {
 
   return (
     <div className={'map-container'}>
-      <Map center={center} zoom={7}>
+      <Map center={center} zoom={7} zoomControl={false}>
+        <ZoomControl position="bottomright" />
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
