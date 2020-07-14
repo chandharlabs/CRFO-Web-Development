@@ -6,3 +6,4 @@ build
 
 # Yarn files
 yarn.lock
+yarn-error.log
