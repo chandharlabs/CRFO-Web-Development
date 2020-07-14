@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Circle, Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Circle, Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet';
 // TODO: Remove papaparser from yarn dependency list
 import testCenters from '../data/testCenters.js';
 import classNames from 'classnames/bind';
+//import iconRed from './icon'
+import redMarker from '../red-marker.png'
+import blueMarker from 'leaflet/dist/images/marker-icon.png'
+import L from 'leaflet'
 const cx = classNames.bind(require('./map.module.css'));
 
 let center = [9.5915668, 76.5221531];
@@ -21,6 +25,18 @@ const PopupLineItem = ({ type, count, legend }) => {
     </>
   );
 };
+
+const iconRed = new L.Icon({
+              iconUrl: redMarker,
+              iconSize: [25, 41],
+              iconAnchor: [13, 41],
+            });
+
+const iconBlue = new L.Icon({
+  iconUrl: blueMarker,
+  iconSize: [25, 41],
+  iconAnchor: [13, 41],
+});
 
 export default function MapContainer(props) {
   const {
@@ -64,10 +80,11 @@ export default function MapContainer(props) {
         console.error('Encountered error when accessing sensor data')
       );
   }, []);
-
+  
   return (
     <div className={'map-container'}>
-      <Map center={center} zoom={7}>
+      <Map center={center} zoom={7} zoomControl={false}>
+        <ZoomControl position="bottomright" />
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
@@ -132,13 +149,26 @@ export default function MapContainer(props) {
           })}
         {viewTestCenters &&
           testCenters.map((testCenter) => {
+            if(selectedLocCoordinate.length > 0) {
+              if(testCenter.LocationCode == selectedLocCoordinate[0].LocationCode) {
+                return (
+                  <Marker
+                    key={testCenter.city}
+                    position={[testCenter.longitude, testCenter.latitude]}
+                    icon={iconRed}
+                  ></Marker>
+                );
+              }
+            }
             return (
-              <Marker
-                key={testCenter.city}
-                position={[testCenter.longitude, testCenter.latitude]}
-              ></Marker>
+                <Marker
+                  key={testCenter.city}
+                  position={[testCenter.longitude, testCenter.latitude]}
+                  icon={iconBlue}
+                ></Marker>
             );
-          })}
+          })
+        }
       </Map>
     </div>
   );
