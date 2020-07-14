@@ -78,7 +78,7 @@ export default function MapContainer(props) {
             if (locationData === undefined) return null;
             return (
               <Circle
-                key={testCenter.city}
+                key={testCenter.LocationCode}
                 center={[testCenter.longitude, testCenter.latitude]}
                 fillColor="#d14f69"
                 fillOpacity={0.6}
@@ -134,7 +134,7 @@ export default function MapContainer(props) {
           testCenters.map((testCenter) => {
             return (
               <Marker
-                key={testCenter.city}
+                key={testCenter.LocationCode}
                 position={[testCenter.longitude, testCenter.latitude]}
               ></Marker>
             );
