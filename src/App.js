@@ -29,6 +29,7 @@ class App extends Component {
         width: window.innerWidth,
       },
       showLeftNav: true,
+      selectedLocationId: null,
     };
   }
 
@@ -98,6 +99,7 @@ class App extends Component {
       newsSearchKeyword,
       selectedLocationDataDisplay,
       selectedLocCoordinate,
+      selectedLocationId,
     } = this.state;
     return (
       <>
@@ -131,15 +133,17 @@ class App extends Component {
                 </div>
                 {dimensions.width > this.mobileWindowSizeBreakPoint && (
                   <>
-                    <div className={cx('new-wrapper')}>
-                      {/* <SelectedLocationData
+                    {selectedLocationId !== null && (
+                      <div className={cx('new-wrapper')}>
+                        {/* <SelectedLocationData
                         locationData={{
                           ...selectedLocationData,
                           loc: newsSearchKeyword,
                         }}
                       /> */}
-                      <AppTable />
-                    </div>
+                        <AppTable selectedLocation={selectedLocationId} />
+                      </div>
+                    )}
                     <span
                       className={cx('toggle-button')}
                       onClick={this.toggleLeftNav}
