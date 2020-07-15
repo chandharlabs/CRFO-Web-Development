@@ -146,7 +146,7 @@ class App extends Component {
                           loc: newsSearchKeyword,
                         }}
                       /> */}
-                        <AppTable selectedLocation={selectedLocationId} />
+                        <AppTable selectedLocation={selectedLocCoordinate} />
                       </div>
                     )}
                     <span
