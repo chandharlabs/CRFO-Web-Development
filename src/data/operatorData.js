@@ -548,6 +548,38 @@ const operatorData = [
   [// Maharashtra
     {
       band: '1800 MHz',
+      oper: 'Tatas',
+      ulink: '1759.9 - 1764.9',
+      dlink: '1854.9 - 1859.9',
+    },
+    {
+      band: '2100 MHz',
+      oper: 'Idea',
+      ulink: '1939 - 1944',
+      dlink: '2129 - 3134',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Airtel',
+      ulink: '2355 - 2365',
+      dlink: '-',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Reliance',
+      ulink: '2365 - 2375',
+      dlink: '-',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Vodafone',
+      ulink: '2635 - 2655',
+      dlink: '-',
+    } 
+  ],
+  [// Maharashtra
+    {
+      band: '1800 MHz',
       oper: 'Airtel',
       ulink: '1751.5 - 1756.5',
       dlink: '1846.5 - 1851.5',
@@ -593,39 +625,7 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2635 - 2655',
       dlink: '-',
-    }
-  ],
-  [// Maharashtra
-    {
-      band: '1800 MHz',
-      oper: 'Tatas',
-      ulink: '1759.9 - 1764.9',
-      dlink: '1854.9 - 1859.9',
-    },
-    {
-      band: '2100 MHz',
-      oper: 'Idea',
-      ulink: '1939 - 1944',
-      dlink: '2129 - 3134',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Airtel',
-      ulink: '2355 - 2365',
-      dlink: '-',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Reliance',
-      ulink: '2365 - 2375',
-      dlink: '-',
-    },
-    {
-      band: '2500 MHz',
-      oper: 'Vodafone',
-      ulink: '2635 - 2655',
-      dlink: '-',
-    }
+    }   
   ],
   [// Manipur
     {
@@ -831,6 +831,32 @@ const operatorData = [
       dlink: '-',
     }
   ],
+  [ // Telangana
+    {
+      band: '1800 MHz',
+      oper: 'Tata',
+      ulink: '1741.7 - 1744.1',
+      dlink: '1836.7 - 1839.1',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Airtel',
+      ulink: '2325 - 2335',
+      dlink: '-',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Reliance',
+      ulink: '2335 - 2345',
+      dlink: '-',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Idea',
+      ulink: '2635 - 2645',
+      dlink: '-',
+    }
+  ],
   [// Punjab
     {
       band: '800 MHz',
@@ -866,7 +892,7 @@ const operatorData = [
       band: '2100 MHz',
       oper: 'Vodafone',
       ulink: '1939 - 1944',
-      dlink: '2129 - 3134',
+      dlink: '2129 - 2134',
     },
     {
       band: '2500 MHz',
@@ -1205,7 +1231,7 @@ const operatorData = [
       dlink: '-',
     }
   ],
-   [// West Bengal
+  [// West Bengal
     {
       band: '1800 MHz',
       oper: 'Airtel',
