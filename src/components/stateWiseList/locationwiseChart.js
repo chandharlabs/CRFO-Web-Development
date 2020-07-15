@@ -9,38 +9,16 @@ import TableRow from '@material-ui/core/TableRow';
 import { Paper, TableContainer } from '@material-ui/core';
 import image1 from '../../assets/Activity_status_L1.jpg';
 import image2 from '../../assets/Percentage_activity_L1.jpg';
+import operatorData from '../../data/operatorData';
+export default function AppTable(props) {
+  const [locationid, setlocationid] = React.useState(1);
+  // console.log(operatorData[1]);
 
-export default function AppTable() {
   const data = React.useMemo(
-    () => [
-      {
-        band: '1800 Mhz',
-        oper: 'Tata Teleservice',
-        ulink: '1741.7 - 1744.1',
-        dlink: '1836.7 - 1839.1',
-      },
-      {
-        band: '1800 Mhz',
-        oper: 'Tata Teleservice',
-        ulink: '1741.7 - 1744.1',
-        dlink: '1836.7 - 1839.1',
-      },
-      {
-        band: '1800 Mhz',
-        oper: 'Tata Teleservice',
-        ulink: '1741.7 - 1744.1',
-        dlink: '1836.7 - 1839.1',
-      },
-      {
-        band: '1800 Mhz',
-        oper: 'Tata Teleservice',
-        ulink: '1741.7 - 1744.1',
-        dlink: '1836.7 - 1839.1',
-      },
-    ],
+    () => (locationid === -1 ? [] : operatorData[locationid]),
     []
   );
-
+  console.log(data);
   const columns = React.useMemo(
     () => [
       {
@@ -70,7 +48,7 @@ export default function AppTable() {
     rows,
     prepareRow,
   } = useTable({ columns, data });
-
+  console.log(data);
   return (
     <div
       style={{

@@ -1,10 +1,10 @@
-import React from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import classNames from "classnames/bind";
-const cx = classNames.bind(require("./stateWiseList.module.css"));
+import React from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(require('./stateWiseList.module.css'));
 
 export default function StateWiseList(props) {
   const { stateWiseData } = props;
@@ -20,23 +20,26 @@ export default function StateWiseList(props) {
           <List
             component="nav"
             aria-label="state list"
-            className={cx("state-list")}
+            className={cx('state-list')}
           >
             {stateWiseData.map((stateData, i) => {
+              console.log(stateData);
               return (
                 <ListItem
                   button
                   key={stateData.state}
-                  className={cx("item-list")}
-                  onClick={event => handleListItemClick(stateData.stateData, i)}
+                  className={cx('item-list')}
+                  onClick={(event) =>
+                    handleListItemClick(stateData.stateData, i)
+                  }
                   selected={selectedIndex === i}
                 >
-<ListItemText
+                  <ListItemText
                     key={stateData.state}
                     primary={stateData.state}
-                    className={cx("state-list-name")}
+                    className={cx('state-list-name')}
                   />
-                  <ListItemSecondaryAction className={cx("number-of-cases")}>
+                  <ListItemSecondaryAction className={cx('number-of-cases')}>
                     {stateData.count}
                   </ListItemSecondaryAction>
                 </ListItem>
