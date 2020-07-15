@@ -95,7 +95,7 @@ export default function MapContainer(props) {
             if (locationData === undefined) return null;
             return (
               <Circle
-                key={testCenter.city}
+                key={testCenter.LocationCode}
                 center={[testCenter.longitude, testCenter.latitude]}
                 fillColor="#d14f69"
                 fillOpacity={0.6}
@@ -161,11 +161,19 @@ export default function MapContainer(props) {
               }
             }
             return (
-                <Marker
-                  key={testCenter.city}
-                  position={[testCenter.longitude, testCenter.latitude]}
-                  icon={iconBlue}
-                ></Marker>
+
+//                 <Marker
+//                   key={testCenter.city}
+//                   position={[testCenter.longitude, testCenter.latitude]}
+//                   icon={iconBlue}
+//                 ></Marker>
+
+              <Marker
+                key={testCenter.LocationCode}
+                position={[testCenter.longitude, testCenter.latitude]}
+              icon={iconBlue}
+              ></Marker>
+
             );
           })
         }

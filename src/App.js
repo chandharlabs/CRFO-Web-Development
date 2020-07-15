@@ -45,8 +45,14 @@ class App extends Component {
   };
 
   handleStateSelect = (selectedLocationCoordinate) => {
+    let locationNoStr = selectedLocationCoordinate[0].LocationCode.replace(
+      'L',
+      ''
+    );
+    console.log(locationNoStr);
     this.setState({
       selectedLocCoordinate: selectedLocationCoordinate,
+      selectedLocationId: Number(locationNoStr) - 1,
       selectedLocationDataDisplay:
         this.state.dimensions.width <= this.mobileWindowSizeBreakPoint,
     });
@@ -63,7 +69,6 @@ class App extends Component {
       },
     });
   };
-
   handleClose = (_) => {
     this.setState({
       selectedLocationDataDisplay: false,
@@ -141,7 +146,7 @@ class App extends Component {
                           loc: newsSearchKeyword,
                         }}
                       /> */}
-                        <AppTable selectedLocation={selectedLocationId} />
+                        <AppTable selectedLocation={selectedLocCoordinate} />
                       </div>
                     )}
                     <span

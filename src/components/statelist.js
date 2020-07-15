@@ -23,6 +23,7 @@ export default function StateCenterMenu(props) {
     ...new Set(testCenters.map((locations) => locations.state)),
   ];
   let drawerMenuItemData = [];
+
   statelist.forEach((place) => {
     let cities = [];
     testCenters.forEach((obj) => {
@@ -32,7 +33,7 @@ export default function StateCenterMenu(props) {
     });
     let statecityindex = {
       state: place,
-      cities: cities,
+      cities,
     };
     drawerMenuItemData.push(statecityindex);
   });
@@ -54,6 +55,7 @@ export default function StateCenterMenu(props) {
             <Collapse in={index === selectedIndex} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 {item.cities.map((sub, index) => {
+                  // console.log(item);
                   return (
                     <ListItem
                       button
