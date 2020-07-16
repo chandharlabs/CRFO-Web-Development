@@ -153,7 +153,7 @@ class App extends Component {
                       className={cx('toggle-button')}
                       onClick={this.toggleLeftNav}
                     >
-                      {this.state.showLeftNav ? 'Close' : 'Open'}
+                      {this.state.showLeftNav ? 'Hide' : 'Show'}
                     </span>
                   </>
                 )}
