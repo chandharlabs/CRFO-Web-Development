@@ -76,8 +76,8 @@ export default function MapContainer(props) {
       .then((json) => {
         setSensorData(json);
       })
-      .catch(() =>
-        console.error('Encountered error when accessing sensor data')
+      .catch((err) =>
+        console.error('Encountered error when accessing sensor data', err)
       );
   }, []);
   
@@ -90,9 +90,9 @@ export default function MapContainer(props) {
           url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
         />
         {sensorData &&
-          testCenters.map((testCenter) => {
-            const locationData = sensorData[testCenter.LocationCode];
-            if (locationData === undefined) return null;
+          sensorData.map((sensor) => {
+            const testCenter = testCenters.find( center => center.LocationCode == sensor.LocationCode );
+            if (testCenter === undefined) return null;
             return (
               <Circle
                 key={testCenter.LocationCode}
@@ -111,23 +111,23 @@ export default function MapContainer(props) {
                   <div className={cx('popup-line-wrap')}>
                     <PopupLineItem
                       legend="cured"
-                      type="470 - 790 MHz (DVB)"
+                      type="DVB"
                       count={
-                        locationData['470 - 790 MHz (DVB)'].PVS * 100 + '%'
+                        sensor['470 - 790 MHz (DVB)'].PVS * 100 + '%'
                       }
                     />
                     <PopupLineItem
                       legend="cases"
-                      type="830 - 890 MHz (LTE)"
+                      type="LTE"
                       count={
-                        locationData['830 - 890 MHz (LTE)'].PVS * 100 + '%'
+                        sensor['830 - 890 MHz (LTE)'].PVS * 100 + '%'
                       }
                     />
                     <PopupLineItem
                       legend="death"
-                      type="890 - 960 MHz (GSM900)"
+                      type="GSM900"
                       count={
-                        locationData['890 - 960 MHz (GSM900)'].PVS * 100 + '%'
+                        sensor['890 - 960 MHz (GSM900)'].PVS * 100 + '%'
                       }
                     />
                   </div>
