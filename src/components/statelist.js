@@ -41,7 +41,7 @@ export default function StateCenterMenu(props) {
     <List component="nav">
       {drawerMenuItemData.map((item, index) => {
         return (
-          <List>
+          <List key={index}>
             <ListItem
               key={index}
               button

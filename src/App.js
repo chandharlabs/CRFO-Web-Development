@@ -18,7 +18,8 @@ class App extends Component {
       indiaData: [],
       districtData: {},
       selectedLocationData: {
-        summary: {},
+        state: {},
+        sensor: {}
       },
       selectedLocCoordinate: [],
       selectedLocationDataDisplay: false,
@@ -44,18 +45,23 @@ class App extends Component {
     });
   };
 
-  handleStateSelect = (selectedLocationCoordinate) => {
-    let locationNoStr = selectedLocationCoordinate[0].LocationCode.replace(
+  handleStateSelect = (stateData) => {
+    let locationNoStr = stateData.LocationCode.replace(
       'L',
       ''
     );
-    console.log(locationNoStr);
+    const sensorData = this.state.indiaData.find( sensor => sensor.LocationCode == stateData.LocationCode )
     this.setState({
-      selectedLocCoordinate: selectedLocationCoordinate,
+      selectedLocationData: {
+        state: stateData,
+        sensor: sensorData
+      },
+      selectedLocCoordinate: [stateData.longitude, stateData.latitude],
       selectedLocationId: Number(locationNoStr) - 1,
       selectedLocationDataDisplay:
         this.state.dimensions.width <= this.mobileWindowSizeBreakPoint,
     });
+    console.log(this.state)
   };
 
   handleResize = (_) => {
@@ -117,7 +123,7 @@ class App extends Component {
                   this.handleDistrictWiseDataSuccess
                 }
                 viewTestCenters={showTestCenters}
-                selectedLocCoordinate={selectedLocCoordinate}
+                selectedLocation={selectedLocationData}
               />
             </div>
 
@@ -146,7 +152,7 @@ class App extends Component {
                           loc: newsSearchKeyword,
                         }}
                       /> */}
-                        <AppTable selectedLocation={selectedLocCoordinate} />
+                        <AppTable selectedLocation={selectedLocationData} />
                       </div>
                     )}
                     <span

@@ -43,19 +43,13 @@ export default function MapContainer(props) {
     onStateWiseDataGetSuccess,
     onDistrictWiseDataGetSuccess,
     viewTestCenters,
-    selectedLocCoordinate,
+    selectedLocation,
   } = props;
 
-  if (selectedLocCoordinate && selectedLocCoordinate.length) {
-    console.log(selectedLocCoordinate[0]);
-    console.log(
-      selectedLocCoordinate[0].latitude +
-        ' ' +
-        selectedLocCoordinate[0].longitude
-    );
+  if ( selectedLocation.state.LocationCode ) {
     center = [
-      selectedLocCoordinate[0].longitude,
-      selectedLocCoordinate[0].latitude - 1.5,
+      selectedLocation.state.longitude,
+      selectedLocation.state.latitude - 1.5,
     ];
   }
 
@@ -149,8 +143,8 @@ export default function MapContainer(props) {
           })}
         {viewTestCenters &&
           testCenters.map((testCenter) => {
-            if(selectedLocCoordinate.length > 0) {
-              if(testCenter.LocationCode == selectedLocCoordinate[0].LocationCode) {
+            if(selectedLocation.state.LocationCode) {
+              if(testCenter.LocationCode == selectedLocation.state.LocationCode) {
                 return (
                   <Marker
                     key={testCenter.city}
@@ -160,18 +154,12 @@ export default function MapContainer(props) {
                 );
               }
             }
+
             return (
-
-//                 <Marker
-//                   key={testCenter.city}
-//                   position={[testCenter.longitude, testCenter.latitude]}
-//                   icon={iconBlue}
-//                 ></Marker>
-
               <Marker
                 key={testCenter.LocationCode}
                 position={[testCenter.longitude, testCenter.latitude]}
-              icon={iconBlue}
+                icon={iconBlue}
               ></Marker>
 
             );
