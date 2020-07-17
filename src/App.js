@@ -38,10 +38,7 @@ class App extends Component {
 
   handleStateWiseDataSuccess = (indiaData) => {
     this.setState({
-      indiaData: indiaData,
-      selectedLocationData: {
-        summary: indiaData.summary,
-      },
+      indiaData: indiaData
     });
   };
 

@@ -69,6 +69,7 @@ export default function MapContainer(props) {
       })
       .then((json) => {
         setSensorData(json);
+        onStateWiseDataGetSuccess(json)
       })
       .catch((err) =>
         console.error('Encountered error when accessing sensor data', err)
