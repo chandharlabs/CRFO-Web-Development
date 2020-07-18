@@ -43,19 +43,13 @@ export default function MapContainer(props) {
     onStateWiseDataGetSuccess,
     onDistrictWiseDataGetSuccess,
     viewTestCenters,
-    selectedLocCoordinate,
+    selectedLocation,
   } = props;
 
-  if (selectedLocCoordinate && selectedLocCoordinate.length) {
-    console.log(selectedLocCoordinate[0]);
-    console.log(
-      selectedLocCoordinate[0].latitude +
-        ' ' +
-        selectedLocCoordinate[0].longitude
-    );
+  if ( selectedLocation.state.LocationCode ) {
     center = [
-      selectedLocCoordinate[0].longitude,
-      selectedLocCoordinate[0].latitude - 1.5,
+      selectedLocation.state.longitude,
+      selectedLocation.state.latitude - 1.5,
     ];
   }
 
@@ -75,9 +69,10 @@ export default function MapContainer(props) {
       })
       .then((json) => {
         setSensorData(json);
+        onStateWiseDataGetSuccess(json)
       })
-      .catch(() =>
-        console.error('Encountered error when accessing sensor data')
+      .catch((err) =>
+        console.error('Encountered error when accessing sensor data', err)
       );
   }, []);
   
@@ -90,9 +85,9 @@ export default function MapContainer(props) {
           url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
         />
         {sensorData &&
-          testCenters.map((testCenter) => {
-            const locationData = sensorData[testCenter.LocationCode];
-            if (locationData === undefined) return null;
+          sensorData.map((sensor) => {
+            const testCenter = testCenters.find( center => center.LocationCode == sensor.LocationCode );
+            if (testCenter === undefined) return null;
             return (
               <Circle
                 key={testCenter.LocationCode}
@@ -111,23 +106,23 @@ export default function MapContainer(props) {
                   <div className={cx('popup-line-wrap')}>
                     <PopupLineItem
                       legend="cured"
-                      type="470 - 790 MHz (DVB)"
+                      type="DVB"
                       count={
-                        locationData['470 - 790 MHz (DVB)'].PVS * 100 + '%'
+                        sensor['470 - 790 MHz (DVB)'].PVS * 100 + '%'
                       }
                     />
                     <PopupLineItem
                       legend="cases"
-                      type="830 - 890 MHz (LTE)"
+                      type="LTE"
                       count={
-                        locationData['830 - 890 MHz (LTE)'].PVS * 100 + '%'
+                        sensor['830 - 890 MHz (LTE)'].PVS * 100 + '%'
                       }
                     />
                     <PopupLineItem
                       legend="death"
-                      type="890 - 960 MHz (GSM900)"
+                      type="GSM900"
                       count={
-                        locationData['890 - 960 MHz (GSM900)'].PVS * 100 + '%'
+                        sensor['890 - 960 MHz (GSM900)'].PVS * 100 + '%'
                       }
                     />
                   </div>
@@ -149,8 +144,8 @@ export default function MapContainer(props) {
           })}
         {viewTestCenters &&
           testCenters.map((testCenter) => {
-            if(selectedLocCoordinate.length > 0) {
-              if(testCenter.LocationCode == selectedLocCoordinate[0].LocationCode) {
+            if(selectedLocation.state.LocationCode) {
+              if(testCenter.LocationCode == selectedLocation.state.LocationCode) {
                 return (
                   <Marker
                     key={testCenter.city}
@@ -160,18 +155,12 @@ export default function MapContainer(props) {
                 );
               }
             }
+
             return (
-
-//                 <Marker
-//                   key={testCenter.city}
-//                   position={[testCenter.longitude, testCenter.latitude]}
-//                   icon={iconBlue}
-//                 ></Marker>
-
               <Marker
                 key={testCenter.LocationCode}
                 position={[testCenter.longitude, testCenter.latitude]}
-              icon={iconBlue}
+                icon={iconBlue}
               ></Marker>
 
             );
