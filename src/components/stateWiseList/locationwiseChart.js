@@ -11,8 +11,8 @@ import { Paper, TableContainer } from '@material-ui/core';
 //import image2 from '../../assets/Percentage_activity_L1.jpg';
 import operatorData from '../../data/operatorData';
 export default function AppTable(props) {
-  console.log(props.selectedLocation[0].LocationCode);
-  let locationNoStr = props.selectedLocation[0].LocationCode.replace('L', '');
+  const {selectedLocation} = props;
+  let locationNoStr = selectedLocation.state.LocationCode.replace('L', '');
   // setlocationid();
   console.log(Number(locationNoStr));
   // const [locationid, setlocationid] = React.useState(Number(locationNoStr));

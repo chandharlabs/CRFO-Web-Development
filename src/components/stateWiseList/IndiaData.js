@@ -28,13 +28,11 @@ export default function IndiaData(props) {
     props.onTestCenterToggle(!viewTestCenters);
   };
   const handleTestClick = (center) => {
-    console.log(center);
-    let selectedStateCoordinates = testCenter.filter((location) => {
-      console.log(location.city === center);
+    console.log("Index", center);
+    let selectedState = testCenter.find((location) => {
       return location.city === center;
     });
-    console.log(selectedStateCoordinates);
-    onStateSelect(selectedStateCoordinates);
+    onStateSelect(selectedState);
   };
   const statByType = { tileList: [], total: 0, styleClasses: [] };
   const initialStatsByType = {
