@@ -9,6 +9,7 @@ import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import AppTable from './components/stateWiseList/locationwiseChart.js';
+import TowerMap from './components/towerMap';
 const cx = classNames.bind(require('./App.module.css'));
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
       districtData: {},
       selectedLocationData: {
         state: {},
-        sensor: {}
+        sensor: {},
       },
       selectedLocCoordinate: [],
       selectedLocationDataDisplay: false,
@@ -31,6 +32,7 @@ class App extends Component {
       },
       showLeftNav: true,
       selectedLocationId: null,
+      showLTE: true,
     };
   }
 
@@ -38,27 +40,26 @@ class App extends Component {
 
   handleStateWiseDataSuccess = (indiaData) => {
     this.setState({
-      indiaData: indiaData
+      indiaData: indiaData,
     });
   };
 
   handleStateSelect = (stateData) => {
-    let locationNoStr = stateData.LocationCode.replace(
-      'L',
-      ''
+    let locationNoStr = stateData.LocationCode.replace('L', '');
+    const sensorData = this.state.indiaData.find(
+      (sensor) => sensor.LocationCode == stateData.LocationCode
     );
-    const sensorData = this.state.indiaData.find( sensor => sensor.LocationCode == stateData.LocationCode )
     this.setState({
       selectedLocationData: {
         state: stateData,
-        sensor: sensorData
+        sensor: sensorData,
       },
       selectedLocCoordinate: [stateData.longitude, stateData.latitude],
       selectedLocationId: Number(locationNoStr) - 1,
       selectedLocationDataDisplay:
         this.state.dimensions.width <= this.mobileWindowSizeBreakPoint,
     });
-    console.log(this.state)
+    console.log(this.state);
   };
 
   handleResize = (_) => {
@@ -89,7 +90,11 @@ class App extends Component {
       showLeftNav: !this.state.showLeftNav,
     });
   };
-
+  toggleLTE = (_) => {
+    this.setState({
+      showLTE: !this.state.showLTE,
+    });
+  };
   componentDidMount = (_) => {
     window.addEventListener('resize', this.handleResize);
   };
@@ -108,13 +113,22 @@ class App extends Component {
       selectedLocationDataDisplay,
       selectedLocCoordinate,
       selectedLocationId,
+      showLTE,
     } = this.state;
     return (
       <>
         <section className={cx('app-wrapper')}>
           <section className={cx('app-container')}>
             <div className={cx('map-wrapper')}>
-              <Map
+              {/* <Map
+                onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
+                onDistrictWiseDataGetSuccess={
+                  this.handleDistrictWiseDataSuccess
+                }
+                viewTestCenters={showTestCenters}
+                selectedLocation={selectedLocationData}
+              /> */}
+              <TowerMap
                 onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
                 onDistrictWiseDataGetSuccess={
                   this.handleDistrictWiseDataSuccess
@@ -137,6 +151,7 @@ class App extends Component {
                     onStateSelect={this.handleStateSelect}
                     onTestCenterToggle={this.handleTestCenterToggle}
                     viewTestCenters={showTestCenters}
+                    viewLTE={showLTE}
                   />
                 </div>
                 {dimensions.width > this.mobileWindowSizeBreakPoint && (
