@@ -9,6 +9,7 @@ import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import AppTable from './components/stateWiseList/locationwiseChart.js';
+import { withAuth0 } from '@auth0/auth0-react';
 const cx = classNames.bind(require('./App.module.css'));
 
 class App extends Component {
@@ -109,9 +110,17 @@ class App extends Component {
       selectedLocCoordinate,
       selectedLocationId,
     } = this.state;
+
+    const { isAuthenticated, loginWithRedirect, logout } = this.props.auth0;
+
     return (
       <>
-        <section className={cx('app-wrapper')}>
+        <section className={cx('app-wrapper')}>{
+          !isAuthenticated &&
+          <div>Please <button onClick={loginWithRedirect}>Log In</button> to use this app...</div>
+        }
+        {
+          isAuthenticated &&
           <section className={cx('app-container')}>
             <div className={cx('map-wrapper')}>
               <Map
@@ -129,7 +138,7 @@ class App extends Component {
                 this.state.showLeftNav ? 'show' : cx('hide')
               }`}
             >
-              <AppHeader />
+              <AppHeader logout={logout}/>
               <div className={cx('tracker-list-container')}>
                 <div className={cx('list-wrapper')}>
                   <IndiaData
@@ -197,10 +206,10 @@ class App extends Component {
               <AppFooter></AppFooter>
             </div>
           </section>
-        </section>
+        }</section>
       </>
     );
   }
 }
 
-export default App;
+export default withAuth0(App);

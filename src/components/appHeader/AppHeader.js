@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import classNames from "classnames/bind";
 const cx = classNames.bind(require("./appHeader.module.css"));
 const AppHeader = props => {
-  const { news } = props;
+  const { news, logout } = props;
   return (
     <>
       <AppBar
@@ -24,6 +24,7 @@ const AppHeader = props => {
             height={80}
           />
         </a>
+        <button onClick={logout}>Log Out</button>
       </AppBar>
     </>
   );
