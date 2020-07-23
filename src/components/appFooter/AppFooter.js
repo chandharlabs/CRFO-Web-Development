@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(require('./appFooter.module.css'));
 
 const AppFooter = () => {
-  // const { news } = props;
   return (
     <div className={cx('footer-container')}>
       <footer>
