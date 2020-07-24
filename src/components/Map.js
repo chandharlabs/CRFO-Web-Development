@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Circle, Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet';
+import {
+  Circle,
+  Map,
+  Marker,
+  Popup,
+  TileLayer,
+  ZoomControl,
+} from 'react-leaflet';
 // TODO: Remove papaparser from yarn dependency list
-import testCenters from '../data/testCenters.js';
 import classNames from 'classnames/bind';
-//import iconRed from './icon'
-import redMarker from '../red-marker.png'
-import blueMarker from 'leaflet/dist/images/marker-icon.png'
-import L from 'leaflet'
+// import iconRed from './icon'
+import blueMarker from 'leaflet/dist/images/marker-icon.png';
+import L from 'leaflet';
+import redMarker from '../red-marker.png';
+import testCenters from '../data/testCenters';
+
 const cx = classNames.bind(require('./map.module.css'));
 
 let center = [9.5915668, 76.5221531];
 const PopupLineItem = ({ type, count, legend }) => {
   return (
     <>
-      <div className={cx(['popup-legend', 'legend-' + legend])}></div>
+      <div className={cx(['popup-legend', `legend-${legend}`])} />
       <div className={cx('count-type')}>{type}</div>
       <div className={cx('counts')}>
         {count !== undefined && count !== null
@@ -27,10 +35,10 @@ const PopupLineItem = ({ type, count, legend }) => {
 };
 
 const iconRed = new L.Icon({
-              iconUrl: redMarker,
-              iconSize: [25, 41],
-              iconAnchor: [13, 41],
-            });
+  iconUrl: redMarker,
+  iconSize: [25, 41],
+  iconAnchor: [13, 41],
+});
 
 const iconBlue = new L.Icon({
   iconUrl: blueMarker,
@@ -41,12 +49,12 @@ const iconBlue = new L.Icon({
 export default function MapContainer(props) {
   const {
     onStateWiseDataGetSuccess,
-    onDistrictWiseDataGetSuccess,
+    // onDistrictWiseDataGetSuccess,
     viewTestCenters,
     selectedLocation,
   } = props;
 
-  if ( selectedLocation.state.LocationCode ) {
+  if (selectedLocation.state.LocationCode) {
     center = [
       selectedLocation.state.longitude,
       selectedLocation.state.latitude - 1.5,
@@ -55,7 +63,7 @@ export default function MapContainer(props) {
 
   const [sensorData, setSensorData] = useState(null);
 
-  const [firstLoad, setFirstLoad] = useState(true);
+  // const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     console.log('Fetching Data');
@@ -63,21 +71,21 @@ export default function MapContainer(props) {
     fetch('/sensorData.json')
       .then((response) => {
         if (!response.ok) {
-          throw new Error('HTTP error ' + response.status);
+          throw new Error(`HTTP error ${response.status}`);
         }
         return response.json();
       })
       .then((json) => {
         setSensorData(json);
-        onStateWiseDataGetSuccess(json)
+        onStateWiseDataGetSuccess(json);
       })
       .catch((err) =>
         console.error('Encountered error when accessing sensor data', err)
       );
   }, []);
-  
+
   return (
-    <div className={'map-container'}>
+    <div className="map-container">
       <Map center={center} zoom={7} zoomControl={false}>
         <ZoomControl position="bottomright" />
         <TileLayer
@@ -86,7 +94,9 @@ export default function MapContainer(props) {
         />
         {sensorData &&
           sensorData.map((sensor) => {
-            const testCenter = testCenters.find( center => center.LocationCode == sensor.LocationCode );
+            const testCenter = testCenters.find(
+              (center) => center.LocationCode === sensor.LocationCode
+            );
             if (testCenter === undefined) return null;
             return (
               <Circle
@@ -97,42 +107,31 @@ export default function MapContainer(props) {
                 stroke={false}
                 radius={50000}
                 onMouseOver={(e) => {
-                  firstLoad && setFirstLoad(false);
+                  // firstLoad && setFirstLoad(false);
                   e.target.openPopup();
                 }}
               >
                 <Popup>
-                  <h3>{testCenter.city + ', ' + testCenter.state}</h3>
+                  <h3>{`${testCenter.city}, ${testCenter.state}`}</h3>
                   <div className={cx('popup-line-wrap')}>
                     <PopupLineItem
                       legend="cured"
                       type="DVB"
-                      count={
-                        sensor['470 - 790 MHz (DVB)'].PVS * 100 + '%'
-                      }
+                      count={`${sensor['470 - 790 MHz (DVB)'].PVS * 100}%`}
                     />
                     <PopupLineItem
                       legend="cases"
                       type="LTE"
-                      count={
-                        sensor['830 - 890 MHz (LTE)'].PVS * 100 + '%'
-                      }
+                      count={`${sensor['830 - 890 MHz (LTE)'].PVS * 100}%`}
                     />
                     <PopupLineItem
                       legend="death"
                       type="GSM900"
-                      count={
-                        sensor['890 - 960 MHz (GSM900)'].PVS * 100 + '%'
-                      }
+                      count={`${sensor['890 - 960 MHz (GSM900)'].PVS * 100}%`}
                     />
                   </div>
                   <a
-                    href={
-                      'https://www.google.com/maps/search/?api=1&query=' +
-                      testCenter.longitude +
-                      ',' +
-                      testCenter.latitude
-                    }
+                    href={`https://www.google.com/maps/search/?api=1&query=${testCenter.longitude},${testCenter.latitude}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -144,14 +143,16 @@ export default function MapContainer(props) {
           })}
         {viewTestCenters &&
           testCenters.map((testCenter) => {
-            if(selectedLocation.state.LocationCode) {
-              if(testCenter.LocationCode == selectedLocation.state.LocationCode) {
+            if (selectedLocation.state.LocationCode) {
+              if (
+                testCenter.LocationCode === selectedLocation.state.LocationCode
+              ) {
                 return (
                   <Marker
                     key={testCenter.city}
                     position={[testCenter.longitude, testCenter.latitude]}
                     icon={iconRed}
-                  ></Marker>
+                  />
                 );
               }
             }
@@ -161,11 +162,9 @@ export default function MapContainer(props) {
                 key={testCenter.LocationCode}
                 position={[testCenter.longitude, testCenter.latitude]}
                 icon={iconBlue}
-              ></Marker>
-
+              />
             );
-          })
-        }
+          })}
       </Map>
     </div>
   );

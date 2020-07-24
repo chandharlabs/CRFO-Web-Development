@@ -1,12 +1,13 @@
-import React from "react";
-import classNames from "classnames/bind";
-const cx = classNames.bind(require("./appFooter.module.css"));
-const AppFooter = props => {
-  const { news } = props;
+import React from 'react';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(require('./appFooter.module.css'));
+
+const AppFooter = () => {
   return (
-    <div className={cx("footer-container")}>
+    <div className={cx('footer-container')}>
       <footer>
-        India Mapped using{" "}
+        India Mapped using{' '}
         <a
           href="https://openstreetmap.org/"
           target="_blank"

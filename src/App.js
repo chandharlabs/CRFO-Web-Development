@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Map from './components/Map.js';
 import IndiaData from './components/stateWiseList/IndiaData';
-import SelectedLocationData from './components/stateWiseList/SelectedLocationData';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,9 +8,6 @@ import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import AppTable from './components/stateWiseList/locationwiseChart.js';
-
-import { withAuth0 } from '@auth0/auth0-react';
-import TowerMap from './components/towerMap';
 const cx = classNames.bind(require('./App.module.css'));
 
 class App extends Component {
@@ -49,7 +45,7 @@ class App extends Component {
   handleStateSelect = (stateData) => {
     let locationNoStr = stateData.LocationCode.replace('L', '');
     const sensorData = this.state.indiaData.find(
-      (sensor) => sensor.LocationCode == stateData.LocationCode
+      (sensor) => sensor.LocationCode === stateData.LocationCode
     );
     this.setState({
       selectedLocationData: {
@@ -111,9 +107,9 @@ class App extends Component {
       showTestCenters,
       dimensions,
       selectedLocationData,
-      newsSearchKeyword,
+      // newsSearchKeyword,
       selectedLocationDataDisplay,
-      selectedLocCoordinate,
+      // selectedLocCoordinate,
       selectedLocationId,
       showLTE,
     } = this.state;
@@ -130,19 +126,11 @@ class App extends Component {
           isAuthenticated &&
           <section className={cx('app-container')}>
             <div className={cx('map-wrapper')}>
-              {/* <Map
-                onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
-                onDistrictWiseDataGetSuccess={
-                  this.handleDistrictWiseDataSuccess
-                }
-                viewTestCenters={showTestCenters}
-                selectedLocation={selectedLocationData}
-              /> */}
-              <TowerMap
-                onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
-                onDistrictWiseDataGetSuccess={
-                  this.handleDistrictWiseDataSuccess
-                }
+              <Map
+                // onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
+                // onDistrictWiseDataGetSuccess={
+                // this.handleDistrictWiseDataSuccess
+                // }
                 viewTestCenters={showTestCenters}
                 selectedLocation={selectedLocationData}
               />
@@ -168,12 +156,6 @@ class App extends Component {
                   <>
                     {selectedLocationId !== null && (
                       <div className={cx('new-wrapper')}>
-                        {/* <SelectedLocationData
-                        locationData={{
-                          ...selectedLocationData,
-                          loc: newsSearchKeyword,
-                        }}
-                      /> */}
                         <AppTable selectedLocation={selectedLocationData} />
                       </div>
                     )}
@@ -192,13 +174,11 @@ class App extends Component {
                     fullWidth={true}
                     className={`${cx('customized-dialog-wrapper')}`}
                   >
-                    {/* <DialogTitle
+                    <DialogTitle
                       id="customized-dialog-title"
                       onClose={this.handleClose}
                       className="customized-dialog-title"
-                    >
-                      
-                    </DialogTitle> */}
+                    ></DialogTitle>
                     {/* {selectedLocationData.loc} */}
                     <IconButton
                       aria-label="close"

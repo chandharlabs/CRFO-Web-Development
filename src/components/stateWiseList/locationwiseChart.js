@@ -1,32 +1,21 @@
 import { useTable } from 'react-table';
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import MaUTable from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Paper, TableContainer } from '@material-ui/core';
-//import image1 from '../../assets/Activity_status_L1.jpg';
-//import image2 from '../../assets/Percentage_activity_L1.jpg';
+
 import operatorData from '../../data/operatorData';
 export default function AppTable(props) {
-  const {selectedLocation} = props;
-  let locationNoStr = selectedLocation.state.LocationCode.replace('L', '');
-  // setlocationid();
-  console.log(Number(locationNoStr));
-  // const [locationid, setlocationid] = React.useState(Number(locationNoStr));
+  const { selectedLocation } = props;
+  const locationNoStr = selectedLocation.state.LocationCode.replace('L', '');
   const locationid = Number(locationNoStr);
-  console.log(locationid);
-  // const data = React.useMemo(
-  //   () => (locationid === -1 ? [] : operatorData[locationid]),
-  //   []
-  // );
   const data = locationid === -1 ? [] : operatorData[locationid - 1];
-  console.log(data);
-  const image1 = 'assets/Activity_status_L' + locationid + '.jpg';
-  console.log(image1);
-  const image2 = 'assets/Percentage_activity_L' + locationid + '.jpg';
+  const image1 = `assets/Activity_status_L${locationid}.jpg`;
+  const image2 = `assets/Percentage_activity_L${locationid}.jpg`;
   const columns = React.useMemo(
     () => [
       {
@@ -90,7 +79,7 @@ export default function AppTable(props) {
     </TableContainer>
   );
 
-  console.log(data);
+  // console.log(data);
   return (
     <div
       style={{
