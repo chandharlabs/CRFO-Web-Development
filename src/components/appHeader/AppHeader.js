@@ -20,7 +20,6 @@ const AppHeader = () => {
             height={80}
           />
         </a>
-        <button onClick={logout}>Log Out</button>
       </AppBar>
     </>
   );
