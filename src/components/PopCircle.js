@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Marker } from "react-leaflet";
+import { Marker } from 'react-leaflet';
 
 export default class PopCircle extends Marker {
   componentDidMount() {

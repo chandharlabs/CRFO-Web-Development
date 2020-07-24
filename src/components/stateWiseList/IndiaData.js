@@ -11,7 +11,6 @@ export default function IndiaData(props) {
     props.onTestCenterToggle(!viewTestCenters);
   };
   const handleTestClick = (center) => {
-    console.log('Index', center);
     const selectedState = testCenter.find((location) => {
       return location.city === center;
     });
