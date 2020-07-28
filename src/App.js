@@ -10,6 +10,8 @@ import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import AppTable from './components/stateWiseList/locationwiseChart.js';
+import LandingPage from './components/landingPage';
+// import landingPage from './components/landingPage';
 const cx = classNames.bind(require('./App.module.css'));
 
 class App extends Component {
@@ -121,10 +123,7 @@ class App extends Component {
       <>
         <section className={cx('app-wrapper')}>
           {!isAuthenticated && (
-            <div>
-              Please <button onClick={loginWithRedirect}>Log In</button> to use
-              this app...
-            </div>
+            <LandingPage loginWithRedirect={loginWithRedirect} />
           )}
           {isAuthenticated && (
             <section className={cx('app-container')}>
