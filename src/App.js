@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Map from './components/Map.js';
+import Towers from './components/Towers';
 import IndiaData from './components/stateWiseList/IndiaData';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -28,6 +29,7 @@ class App extends Component {
       selectedLocationDataDisplay: false,
       newsSearchKeyword: 'India',
       showTestCenters: true,
+      showTowers: true,
       dimensions: {
         height: window.innerHeight,
         width: window.innerWidth,
@@ -87,6 +89,12 @@ class App extends Component {
     });
   };
 
+  handleTowersToggle = (showTowers) => {
+    this.setState({
+      showTowers: !!showTowers,
+    })
+  }
+
   toggleLeftNav = (value) => {
     this.setState({
       showLeftNav: !this.state.showLeftNav,
@@ -109,6 +117,7 @@ class App extends Component {
     let {
       indiaData,
       showTestCenters,
+      showTowers,
       dimensions,
       selectedLocationData,
       // newsSearchKeyword,
@@ -128,12 +137,19 @@ class App extends Component {
           {isAuthenticated && (
             <section className={cx('app-container')}>
               <div className={cx('map-wrapper')}>
-                <Map
-                  // onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
-                  // onDistrictWiseDataGetSuccess={
-                  // this.handleDistrictWiseDataSuccess
-                  // }
+                {/* <Map
+                // onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
+                // onDistrictWiseDataGetSuccess={
+                // this.handleDistrictWiseDataSuccess
+                // }
+                // viewTestCenters={showTestCenters}
+                // selectedLocation={selectedLocationData}
+                /> */}
+                <Towers
+                  onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
+                  onDistrictWiseDataGetSuccess={this.handleDistrictWiseDataSuccess}
                   viewTestCenters={showTestCenters}
+                  viewTowers={showTowers}
                   selectedLocation={selectedLocationData}
                 />
               </div>
