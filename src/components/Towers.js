@@ -199,14 +199,12 @@ class Towers extends React.Component {
             l: 0, r: 0, t: 0, b: 0
           },
           showlegend: true,
-          legend: {
-            x: 1, y: 1, anchor: "bottom"
-          }
+          legend: { x: 0.93, y: 0.98, bgcolor: 'white' }
         }}
         revision={data.revision}
         useResizeHandler={true}
         style={{ width: "100%", height: "100%" }}
-        config={{displayModeBar: false}}
+        config={{displayModeBar: true}}
       />
     );
   }
