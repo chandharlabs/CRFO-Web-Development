@@ -25,6 +25,7 @@ class App extends Component {
       selectedLocationDataDisplay: false,
       newsSearchKeyword: 'India',
       showTestCenters: true,
+      showTowers: true,
       dimensions: {
         height: window.innerHeight,
         width: window.innerWidth,
@@ -84,6 +85,12 @@ class App extends Component {
     });
   };
 
+  handleTowersToggle = (showTowers) => {
+    this.setState({
+      showTowers: !!showTowers,
+    })
+  }
+
   toggleLeftNav = (value) => {
     this.setState({
       showLeftNav: !this.state.showLeftNav,
@@ -106,6 +113,7 @@ class App extends Component {
     let {
       indiaData,
       showTestCenters,
+      showTowers,
       dimensions,
       selectedLocationData,
       // newsSearchKeyword,
@@ -131,6 +139,7 @@ class App extends Component {
                 onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
                 onDistrictWiseDataGetSuccess={this.handleDistrictWiseDataSuccess}
                 viewTestCenters={showTestCenters}
+                viewTowers={showTowers}
                 selectedLocation={selectedLocationData}
               />
             </div>
@@ -148,6 +157,8 @@ class App extends Component {
                     onStateSelect={this.handleStateSelect}
                     onTestCenterToggle={this.handleTestCenterToggle}
                     viewTestCenters={showTestCenters}
+                    onTowersToggle={this.handleTowersToggle}
+                    viewTowers={showTowers}
                     viewLTE={showLTE}
                   />
                 </div>

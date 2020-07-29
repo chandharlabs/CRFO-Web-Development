@@ -114,11 +114,19 @@ class Towers extends React.Component {
   }
 
   render() {
-    console.log("Sensor data", this.props.viewTestCenters)
+    console.log("Sensor data", this.props.viewTowers)
     let centers = this.state.centers
     let center = this.state.center
     let data = [
       {
+        lon: 0,
+        lat: 0,
+        type: 'scattermapbox',
+      }
+    ]
+
+    if (this.props.viewTowers) {
+      data.push({
         lon: this.state.data.lte[4],
         lat: this.state.data.lte[5],
         type: 'scattermapbox',
@@ -141,8 +149,8 @@ class Towers extends React.Component {
         marker: { color: 'orange' },
         name: 'UMTS',
         text: this.state.data.umts[7]
-      },
-    ]
+      })
+    }
 
     if (this.props.viewTestCenters) {
       data.push({
