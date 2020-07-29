@@ -114,7 +114,7 @@ class Towers extends React.Component {
   }
 
   render() {
-    console.log("Sensor data", this.state.centers)
+    console.log("Sensor data", this.props.viewTestCenters)
     let centers = this.state.centers
     let center = this.state.center
     let data = [
@@ -142,15 +142,18 @@ class Towers extends React.Component {
         name: 'UMTS',
         text: this.state.data.umts[7]
       },
-      {
+    ]
+
+    if (this.props.viewTestCenters) {
+      data.push({
         lon: centers.longitude,
         lat: centers.latitude,
         type: 'scattermapbox',
         marker: { color: 'red', size: 14 },
         name: 'Test Center',
         text: centers.text,
-      }
-    ]
+      })
+    }
 
     // props and states should be updated in their own lifecycle methods
     // this is hacky, but allows for quick prototyping.
@@ -159,14 +162,16 @@ class Towers extends React.Component {
         this.props.selectedLocation.state.longitude,
         this.props.selectedLocation.state.latitude - 1.5,
       ];
-      data.push({
-        lon: [this.props.selectedLocation.state.latitude], // These flipped values are used throughout the application
-        lat: [this.props.selectedLocation.state.longitude],
-        type: 'scattermapbox',
-        marker: { color: 'blue', size: 14 },
-        name: 'Selected Test Center',
-        text: [centers.text[centers.LocationCode.findIndex((code) => code == this.props.selectedLocation.state.LocationCode)]]
-      })
+      if (this.props.viewTestCenters) {
+        data.push({
+          lon: [this.props.selectedLocation.state.latitude], // These flipped values are used throughout the application
+          lat: [this.props.selectedLocation.state.longitude],
+          type: 'scattermapbox',
+          marker: { color: 'blue', size: 14 },
+          name: 'Selected Test Center',
+          text: [centers.text[centers.LocationCode.findIndex((code) => code == this.props.selectedLocation.state.LocationCode)]]
+        })
+      }
     }
 
     console.log("Data", data)
