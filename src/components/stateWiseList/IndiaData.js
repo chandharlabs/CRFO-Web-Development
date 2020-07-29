@@ -7,7 +7,7 @@ const cx = classNames.bind(require('./stateWiseList.module.css'));
 
 export default function IndiaData(props) {
   const { onStateSelect, viewTestCenters, viewTowers } = props;
-  
+
   const handleTestCentersToggle = () => {
     props.onTestCenterToggle(!viewTestCenters);
   };
@@ -25,7 +25,7 @@ export default function IndiaData(props) {
     <>
       <section className={cx('list-wrapper')}>
         <section className={cx('list-content')}>
-          <div className="switch-text">
+          {/* <div className="switch-text">
             Show measurement locations
             <label className="switch">
               <input
@@ -46,7 +46,7 @@ export default function IndiaData(props) {
               />
               <span className="slider round" />
             </label>
-          </div>
+          </div> */}
           <StateCenterMenu handleStateClick={handleTestClick} />
         </section>
       </section>
