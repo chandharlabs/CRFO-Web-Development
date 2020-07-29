@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Map from './components/Map.js';
+import Towers from './components/Towers';
 import IndiaData from './components/stateWiseList/IndiaData';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -118,14 +119,15 @@ class App extends Component {
         <section className={cx('app-wrapper')}>
           <section className={cx('app-container')}>
             <div className={cx('map-wrapper')}>
-              <Map
+              {/* <Map
                 // onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
                 // onDistrictWiseDataGetSuccess={
                 // this.handleDistrictWiseDataSuccess
                 // }
                 viewTestCenters={showTestCenters}
                 selectedLocation={selectedLocationData}
-              />
+              /> */}
+              <Towers selectedLocation={selectedLocationData}/>
             </div>
 
             <div
