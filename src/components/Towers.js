@@ -1,19 +1,20 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
-import {readRemoteFile} from 'react-papaparse';
+import { readRemoteFile } from 'react-papaparse';
 import testCenters from '../data/testCenters';
 
 class Towers extends React.Component {
   constructor(props) {
     super(props)
-    
+
     // Convert testCenter object to table
     let centerTable = {
       state: [],
       city: [],
       latitude: [],
       longitude: [],
-      LocationCode: []
+      LocationCode: [],
+      text: [],
     }
 
     testCenters.forEach(center => {
@@ -34,11 +35,42 @@ class Towers extends React.Component {
       revision: 0,
       center: [28.651952, 75.731495],
       initialised: false,
-      centers: centerTable
+      centers: centerTable,
+      sensorData: {}
     }
   }
 
   componentDidMount() {
+    console.log('Reading sensor data');
+    fetch('/sensorData.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        this.setState({ sensorData: { json } });
+        this.props.onStateWiseDataGetSuccess(json);
+        // Set the text field for the states
+        let textField = json.map((sensor) => `DVB: ${sensor["470 - 790 MHz (DVB)"]["PVS"] * 100}%<br>LTE: ${sensor["830 - 890 MHz (LTE)"]["PVS"] * 100}%<br>GSM900: ${sensor["890 - 960 MHz (GSM900)"]["PVS"] * 100}%`)
+        this.setState({
+          centers: {
+            state: this.state.centers.state,
+            city: this.state.centers.city,
+            latitude: this.state.centers.latitude,
+            longitude: this.state.centers.longitude,
+            LocationCode: this.state.centers.LocationCode,
+            text: textField,
+          }
+        })
+      })
+      .catch((err) =>
+        console.error('Encountered error when accessing sensor data', err)
+      );
+
+
+    console.log("Reading tower data")
     readRemoteFile('http:/localhost:3000/towers_in_range.csv', {
       header: false,
       dynamicTyping: true,
@@ -50,27 +82,28 @@ class Towers extends React.Component {
         }
 
         // Add results to respective arrays
-        let lte = results.data.filter( record => record[0] == "LTE")
-        let gsm = results.data.filter( record => record[0] == "GSM")
-        let umts = results.data.filter( record => record[0] == "UMTS")
+        let lte = results.data.filter(record => record[0] == "LTE")
+        let gsm = results.data.filter(record => record[0] == "GSM")
+        let umts = results.data.filter(record => record[0] == "UMTS")
         // Transponse arrays for easy lookup
         lte = lte[0].map((col, i) => lte.map(row => row[i]))
         gsm = gsm[0].map((col, i) => gsm.map(row => row[i]))
         umts = umts[0].map((col, i) => umts.map(row => row[i]))
         // Append formatted text fields
         //lte.push(lte[0].map( (v, i) => `${lte[1]}<br>${lte[2]}<br>${lte[3]}`))
-        lte.push(lte[0].map( (v, i) => `MCC: ${lte[1][i]}<br>NET: ${lte[2][i]}<br>CELL ID: ${lte[3][i]}`))
-        gsm.push(gsm[0].map( (v, i) => `MCC: ${gsm[1][i]}<br>NET: ${gsm[2][i]}<br>CELL ID: ${gsm[3][i]}`))
-        umts.push(umts[0].map( (v, i) => `MCC: ${umts[1][i]}<br>NET: ${umts[2][i]}<br>CELL ID: ${umts[3][i]}`))
+        lte.push(lte[0].map((v, i) => `MCC: ${lte[1][i]}<br>NET: ${lte[2][i]}<br>CELL ID: ${lte[3][i]}`))
+        gsm.push(gsm[0].map((v, i) => `MCC: ${gsm[1][i]}<br>NET: ${gsm[2][i]}<br>CELL ID: ${gsm[3][i]}`))
+        umts.push(umts[0].map((v, i) => `MCC: ${umts[1][i]}<br>NET: ${umts[2][i]}<br>CELL ID: ${umts[3][i]}`))
 
         // COLUMNS are now: RADIO,MCC,NET,CELL_ID,LONGITUDE,LATITUDE,LOCATION_CODE,TEXT
 
         this.setState({
-          data:{
+          data: {
             lte: lte,
             gsm: gsm,
             umts: umts,
-        }})
+          }
+        })
         console.log("Parsing complete:", this.state.data, results, file)
       },
       error: (error, file) => {
@@ -81,6 +114,7 @@ class Towers extends React.Component {
   }
 
   render() {
+    console.log("Sensor data", this.state.centers)
     let centers = this.state.centers
     let center = this.state.center
     let data = [
@@ -112,8 +146,9 @@ class Towers extends React.Component {
         lon: centers.longitude,
         lat: centers.latitude,
         type: 'scattermapbox',
-        marker: { color: 'red', size: 14},
+        marker: { color: 'red', size: 14 },
         name: 'Test Center',
+        text: centers.text,
       }
     ]
 
@@ -129,7 +164,8 @@ class Towers extends React.Component {
         lat: [this.props.selectedLocation.state.longitude],
         type: 'scattermapbox',
         marker: { color: 'blue', size: 14 },
-        name: 'Test Center'
+        name: 'Selected Test Center',
+        text: [centers.text[centers.LocationCode.findIndex((code) => code == this.props.selectedLocation.state.LocationCode)]]
       })
     }
 
@@ -143,7 +179,7 @@ class Towers extends React.Component {
           dragmode: 'zoom',
           mapbox: {
             style: 'open-street-map',
-            center: {lat: center[0], lon: center[1] +1.5},
+            center: { lat: center[0], lon: center[1] + 1.5 },
             zoom: 10
           },
           margin: {
@@ -153,9 +189,9 @@ class Towers extends React.Component {
         displayModeBar={false}
         revision={data.revision}
         useResizeHandler={true}
-        style={{width:"100%", height: "100%"}}
+        style={{ width: "100%", height: "100%" }}
       />
-    );  
+    );
   }
 }
 

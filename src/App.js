@@ -127,7 +127,12 @@ class App extends Component {
                 viewTestCenters={showTestCenters}
                 selectedLocation={selectedLocationData}
               /> */}
-              <Towers selectedLocation={selectedLocationData}/>
+              <Towers
+                onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
+                onDistrictWiseDataGetSuccess={this.handleDistrictWiseDataSuccess}
+                viewTestCenters={showTestCenters}
+                selectedLocation={selectedLocationData}
+              />
             </div>
 
             <div
