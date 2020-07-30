@@ -1,6 +1,6 @@
 {
   "name": "coronasafe-maps",
-  "homepage": "https://chandharlabs.github.io/CRFO-Web-Development/",
+  "homepage": "data.crfo.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
