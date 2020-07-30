@@ -28,10 +28,10 @@
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=8192 start",
-    "build": "react-scripts build",
+    "build": "react-scripts --max_old_space_size=8192 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "react-scripts build",
+    "predeploy": "react-scripts --max_old_space_size=8192 build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

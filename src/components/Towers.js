@@ -42,7 +42,7 @@ class Towers extends React.Component {
 
   componentDidMount() {
     console.log('Reading sensor data');
-    fetch('/sensorData.json')
+    fetch(`${window.location.href}sensorData.json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error ${response.status}`);
@@ -71,7 +71,7 @@ class Towers extends React.Component {
 
 
     console.log("Reading tower data")
-    readRemoteFile('http:/localhost:3000/towers_in_range.csv', {
+    readRemoteFile(`${window.location.href}towers_in_range.csv`, {
       header: false,
       dynamicTyping: true,
       worker: true,
