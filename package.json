@@ -1,6 +1,6 @@
 {
-  "name": "coronasafe-maps",
-  "homepage": "https://jademaveric.github.io/CRFO-Web-Development/",
+  "name": "CRFO",
+  "homepage": "htps://data.crfo.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

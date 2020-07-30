@@ -22,11 +22,9 @@ function LandingPage(props) {
         <Box height="15em">
           <img src="https://i.ibb.co/znRpb7Q/crfoLogo.png" alt="CRFO Logo" height={80} />
           <h1>Welcome to CRFO </h1>
-          Please{' '}
           <Button onClick={loginWithRedirect} variant="outlined" size="medium">
             Log In
           </Button>{' '}
-          to use this app...
         </Box>
       </Card>
     </div>
