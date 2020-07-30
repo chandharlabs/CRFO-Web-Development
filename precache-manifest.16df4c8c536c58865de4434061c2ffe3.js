@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b03593e7c21b518bfc675048d7dda4c2",
+    "revision": "db70cbc138c6092c626f89a27d3c28bc",
     "url": "/CRFO-Web-Development/index.html"
   },
   {
-    "revision": "a39f32650cb999a887ee",
+    "revision": "e9174721980d016d829d",
     "url": "/CRFO-Web-Development/static/css/main.92bfd8e9.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CRFO-Web-Development/static/js/2.707bd8e8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a39f32650cb999a887ee",
-    "url": "/CRFO-Web-Development/static/js/main.e94af4b5.chunk.js"
+    "revision": "e9174721980d016d829d",
+    "url": "/CRFO-Web-Development/static/js/main.4a018621.chunk.js"
   },
   {
     "revision": "6aaf15e287345537b3ae",
