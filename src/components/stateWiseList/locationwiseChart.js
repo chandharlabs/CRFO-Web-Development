@@ -87,7 +87,13 @@ export default function AppTable(props) {
         overflow: 'scroll',
       }}
     >
+      <p style={{ textDecoration: 'underline', alignSelf: 'center' }}>
+        Cellular spectrum Allocation
+      </p>
       <Paper>{locationid === -1 ? <p>No Data For the state</p> : table}</Paper>
+      <p style={{ textDecoration: 'underline', alignSelf: 'center' }}>
+        Activity Status
+      </p>
       <img
         src={image1}
         alt="Activity status L1"
@@ -97,6 +103,9 @@ export default function AppTable(props) {
           height: 'auto',
         }}
       />
+      <p style={{ textDecoration: 'underline', alignSelf: 'center' }}>
+        Percentage of Occupied Bandwidth
+      </p>
       <img
         src={image2}
         alt="percentage activity"

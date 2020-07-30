@@ -13,7 +13,7 @@ export default function IndiaData(props) {
   };
   const handleTowersToggle = () => {
     props.onTowersToggle(!viewTowers);
-  }
+  };
 
   const handleTestClick = (center) => {
     const selectedState = testCenter.find((location) => {
@@ -25,28 +25,6 @@ export default function IndiaData(props) {
     <>
       <section className={cx('list-wrapper')}>
         <section className={cx('list-content')}>
-          {/* <div className="switch-text">
-            Show measurement locations
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={viewTestCenters}
-                onChange={() => handleTestCentersToggle()}
-              />
-              <span className="slider round" />
-            </label>
-          </div>
-          <div className="switch-text">
-            Show tower locations
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={viewTowers}
-                onChange={() => handleTowersToggle()}
-              />
-              <span className="slider round" />
-            </label>
-          </div> */}
           <StateCenterMenu handleStateClick={handleTestClick} />
         </section>
       </section>
