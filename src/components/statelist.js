@@ -2,16 +2,13 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import testCenters from '../data/testCenters';
-//const drawerMenuItemData = [];
 
 export default function StateCenterMenu(props) {
   const [selectedIndex, setSelectedIndex] = React.useState('');
-  //const drawerMenuItemData = testCenters;
   const handleClick = (index) => {
     if (selectedIndex === index) {
       setSelectedIndex('');
@@ -27,8 +24,6 @@ export default function StateCenterMenu(props) {
   statelist.forEach((place) => {
     let cities = [];
     testCenters.forEach((obj) => {
-      // console.log(obj);
-      //console.log(place);
       if (obj.state === place) cities.push(obj.city);
     });
     let statecityindex = {
