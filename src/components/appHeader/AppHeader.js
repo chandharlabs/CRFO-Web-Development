@@ -23,7 +23,7 @@ const AppHeader = (props) => {
             height={80}
           />
         </a>
-        <button onClick={logout}>Log Out`</button>
+        <button onClick={logout}>Log Out</button>
       </AppBar>
     </>
   );

@@ -5,12 +5,14 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   login: {
-    display: 'grid',
-    placeItems: 'center',
-    height: '15em',
-    width: '20em',
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
   },
 });
+
 function LandingPage(props) {
   const { loginWithRedirect } = props;
   const classes = useStyles();
@@ -18,7 +20,7 @@ function LandingPage(props) {
     <div className={classes.login}>
       <Card wid>
         <Box height="15em">
-          <img src="./crfoLogo.svg" alt="CRFO Logo" height={80} />
+          <img src="https://i.ibb.co/znRpb7Q/crfoLogo.png" alt="CRFO Logo" height={80} />
           <h1>Welcome to CRFO </h1>
           Please{' '}
           <Button onClick={loginWithRedirect} variant="outlined" size="medium">
