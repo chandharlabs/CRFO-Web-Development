@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import StateCenterMenu from '../statelist';
 import testCenter from '../../data/testCenters';
+import Dropdown from '../stateListDropdown';
 
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 
@@ -25,7 +26,8 @@ export default function IndiaData(props) {
     <>
       <section className={cx('list-wrapper')}>
         <section className={cx('list-content')}>
-          <StateCenterMenu handleStateClick={handleTestClick} />
+          {/* <StateCenterMenu handleStateClick={handleTestClick} /> */}
+          <Dropdown handleStateClick={handleTestClick} />
         </section>
       </section>
     </>
