@@ -42,12 +42,9 @@ class Dropdown extends React.Component {
     const { states } = this.state;
     this.setState({ selectedState: event.target.value });
     const centers = states.filter((state) => {
-      // console.log(state);
       return state.state === event.target.value;
     });
-    // console.log(centers[0].cities);
     this.setState({ centers: centers[0].cities });
-    // console.log(this.state.centers);
   }
 
   changeCenter(event) {
@@ -55,44 +52,46 @@ class Dropdown extends React.Component {
   }
 
   jumpToSelected() {
-    if (this.state.selectedCenter === '--Choose Center--')
-      alert('choose center');
-    else this.props.handleStateClick(this.state.selectedCenter);
+    const { selectedCenter } = this.state;
+    const { handleStateClick } = this.props;
+    if (selectedCenter === '--Choose Center--') alert('choose center');
+    else handleStateClick(selectedCenter);
   }
 
   render() {
-    // console.log(this.state.states);
-
+    const { selectedCenter, selectedState, states, centers } = this.state;
     return (
       <div>
         <p> View Statistics for specific states</p>
         <div>
-          <label>State </label>
+          <span>State </span>
+
           <Select
-            placeholder="state"
-            value={this.state.selectedState}
+            defaultValue="--Choose State--"
+            value={selectedState}
             onChange={this.changeState}
-            displayEmpty
           >
-            <MenuItem value="" disabled>--select state</MenuItem>
-            {this.state.states.map((place) => {
-              // console.log(place);
+            <MenuItem value="--Choose State--" disabled>
+              select state
+            </MenuItem>
+            {states.map((place) => {
               return <MenuItem value={place.state}>{place.state}</MenuItem>;
             })}
           </Select>
         </div>
         <br />
         <div>
-          <label>Center </label>
+          <span>Center </span>
           <Select
-            placeholder="center"
-            value={this.state.selectedCenter}
+            defaultValue="--Choose Center--"
+            value={selectedCenter}
             onChange={this.changeCenter}
             displayEmpty
           >
-            <MenuItem value="" disabled>--Select Center</MenuItem>
-            {this.state.centers.map((place) => {
-              // console.log(place);
+            <MenuItem value="--Choose Center--" disabled>
+              Select Center
+            </MenuItem>
+            {centers.map((place) => {
               return <MenuItem value={place}>{place}</MenuItem>;
             })}
           </Select>
