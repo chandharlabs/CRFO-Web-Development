@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import testCenters from '../data/testCenters';
 
 class Dropdown extends React.Component {
@@ -7,7 +10,7 @@ class Dropdown extends React.Component {
     this.state = {
       states: [],
       selectedState: '--Choose State--',
-      selectedCenter: '--Choose Center',
+      selectedCenter: '--Choose Center--',
       centers: [],
     };
     this.changeState = this.changeState.bind(this);
@@ -36,8 +39,9 @@ class Dropdown extends React.Component {
   }
 
   changeState(event) {
+    const { states } = this.state;
     this.setState({ selectedState: event.target.value });
-    const centers = this.state.states.filter((state) => {
+    const centers = states.filter((state) => {
       // console.log(state);
       return state.state === event.target.value;
     });
@@ -51,7 +55,9 @@ class Dropdown extends React.Component {
   }
 
   jumpToSelected() {
-    this.props.handleStateClick(this.state.selectedCenter);
+    if (this.state.selectedCenter === '--Choose Center--')
+      alert('choose center');
+    else this.props.handleStateClick(this.state.selectedCenter);
   }
 
   render() {
@@ -59,36 +65,47 @@ class Dropdown extends React.Component {
 
     return (
       <div>
-        hello world
+        <p> View Statistics for specific states</p>
         <div>
-          <label>State</label>
-          <select
+          <label>State </label>
+          <Select
             placeholder="state"
             value={this.state.selectedState}
             onChange={this.changeState}
+            displayEmpty
           >
-            <option>--select state</option>
+            <MenuItem value="" disabled>--select state</MenuItem>
             {this.state.states.map((place) => {
               // console.log(place);
-              return <option>{place.state}</option>;
+              return <MenuItem value={place.state}>{place.state}</MenuItem>;
             })}
-          </select>
+          </Select>
         </div>
+        <br />
         <div>
-          <label>Center</label>
-          <select
+          <label>Center </label>
+          <Select
             placeholder="center"
             value={this.state.selectedCenter}
             onChange={this.changeCenter}
+            displayEmpty
           >
-            <option>--Select Center</option>
+            <MenuItem value="" disabled>--Select Center</MenuItem>
             {this.state.centers.map((place) => {
               // console.log(place);
-              return <option>{place}</option>;
+              return <MenuItem value={place}>{place}</MenuItem>;
             })}
-          </select>
+          </Select>
         </div>
-        <button onClick={this.jumpToSelected}>Select State</button>
+        <br />
+        <Button
+          contained
+          color="primary"
+          variant="contained"
+          onClick={this.jumpToSelected}
+        >
+          Select State
+        </Button>
       </div>
     );
   }
