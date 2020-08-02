@@ -217,7 +217,7 @@ class App extends Component {
                     </Dialog>
                   )}
                 </div>
-                <AppFooter></AppFooter>
+                {<AppFooter></AppFooter>}
               </div>
             </section>
           )}{' '}

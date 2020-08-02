@@ -54,7 +54,7 @@ class Dropdown extends React.Component {
   jumpToSelected() {
     const { selectedCenter } = this.state;
     const { handleStateClick } = this.props;
-    if (selectedCenter === '--Choose Center--') alert('choose center');
+    if (selectedCenter === '--Choose Center--') alert('Please select center');
     else handleStateClick(selectedCenter);
   }
 
@@ -64,7 +64,7 @@ class Dropdown extends React.Component {
       <div>
         <p> View Statistics for specific states</p>
         <div>
-          <span>State </span>
+          <span>State: </span>
 
           <Select
             defaultValue="--Choose State--"
@@ -72,7 +72,7 @@ class Dropdown extends React.Component {
             onChange={this.changeState}
           >
             <MenuItem value="--Choose State--" disabled>
-              select state
+              Select State
             </MenuItem>
             {states.map((place) => {
               return <MenuItem value={place.state}>{place.state}</MenuItem>;
@@ -81,7 +81,7 @@ class Dropdown extends React.Component {
         </div>
         <br />
         <div>
-          <span>Center </span>
+          <span>Center: </span>
           <Select
             defaultValue="--Choose Center--"
             value={selectedCenter}
@@ -103,7 +103,7 @@ class Dropdown extends React.Component {
           variant="contained"
           onClick={this.jumpToSelected}
         >
-          Select State
+          Go to Location
         </Button>
       </div>
     );

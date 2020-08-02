@@ -1,6 +1,6 @@
 {
   "name": "CRFO",
-  "homepage": "htps://data.crfo.org",
+  "homepage": "https://map.crfo.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
