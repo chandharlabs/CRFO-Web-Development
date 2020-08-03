@@ -65,6 +65,13 @@ class App extends Component {
     });
     console.log(this.state);
   };
+  handleStateReset = () => {
+    this.setState({
+      selectedLocationData: { state: [], sensor: [] },
+      selectedLocCoordinate: [],
+      selectedLocationId: null,
+    });
+  };
 
   handleResize = (_) => {
     let dimension = {
@@ -92,8 +99,8 @@ class App extends Component {
   handleTowersToggle = (showTowers) => {
     this.setState({
       showTowers: !!showTowers,
-    })
-  }
+    });
+  };
 
   toggleLeftNav = (value) => {
     this.setState({
@@ -147,7 +154,9 @@ class App extends Component {
                 /> */}
                 <Towers
                   onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
-                  onDistrictWiseDataGetSuccess={this.handleDistrictWiseDataSuccess}
+                  onDistrictWiseDataGetSuccess={
+                    this.handleDistrictWiseDataSuccess
+                  }
                   viewTestCenters={showTestCenters}
                   viewTowers={showTowers}
                   selectedLocation={selectedLocationData}
@@ -168,6 +177,7 @@ class App extends Component {
                       onTestCenterToggle={this.handleTestCenterToggle}
                       viewTestCenters={showTestCenters}
                       viewLTE={showLTE}
+                      handleStateReset={this.handleStateReset}
                     />
                   </div>
                   {dimensions.width > this.mobileWindowSizeBreakPoint && (

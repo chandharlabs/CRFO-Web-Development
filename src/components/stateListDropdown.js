@@ -16,6 +16,7 @@ class Dropdown extends React.Component {
     this.changeState = this.changeState.bind(this);
     this.changeCenter = this.changeCenter.bind(this);
     this.jumpToSelected = this.jumpToSelected.bind(this);
+    this.stateReset = this.stateReset.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +57,19 @@ class Dropdown extends React.Component {
     const { handleStateClick } = this.props;
     if (selectedCenter === '--Choose Center--') alert('choose center');
     else handleStateClick(selectedCenter);
+  }
+
+  stateReset() {
+    console.log('State Reset');
+    const { handleStateReset } = this.props;
+    this.state = {
+      selectedState: '--Choose State--',
+      selectedCenter: '--Choose Center--',
+      centers: [],
+    };
+    // console.log(this.state.selectedState);
+    // console.log(this.state.selectedCenter);
+    handleStateReset();
   }
 
   render() {
@@ -105,6 +119,7 @@ class Dropdown extends React.Component {
         >
           Select State
         </Button>
+        <Button onClick={this.stateReset}>Reset</Button>
       </div>
     );
   }
