@@ -9,12 +9,12 @@ const cx = classNames.bind(require('./stateWiseList.module.css'));
 export default function IndiaData(props) {
   const { onStateSelect, viewTestCenters, viewTowers } = props;
 
-  const handleTestCentersToggle = () => {
-    props.onTestCenterToggle(!viewTestCenters);
-  };
-  const handleTowersToggle = () => {
-    props.onTowersToggle(!viewTowers);
-  };
+  // const handleTestCentersToggle = () => {
+  //   props.onTestCenterToggle(!viewTestCenters);
+  // };
+  // const handleTowersToggle = () => {
+  //   props.onTowersToggle(!viewTowers);
+  // };
 
   const handleTestClick = (center) => {
     const selectedState = testCenter.find((location) => {
@@ -22,12 +22,18 @@ export default function IndiaData(props) {
     });
     onStateSelect(selectedState);
   };
+  const stateReset = () => {
+    props.handleStateReset();
+  };
   return (
     <>
       <section className={cx('list-wrapper')}>
         <section className={cx('list-content')}>
           {/* <StateCenterMenu handleStateClick={handleTestClick} /> */}
-          <Dropdown handleStateClick={handleTestClick} />
+          <Dropdown
+            handleStateClick={handleTestClick}
+            handleStateReset={stateReset}
+          />
         </section>
       </section>
     </>

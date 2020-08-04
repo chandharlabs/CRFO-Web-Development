@@ -16,6 +16,7 @@ class Dropdown extends React.Component {
     this.changeState = this.changeState.bind(this);
     this.changeCenter = this.changeCenter.bind(this);
     this.jumpToSelected = this.jumpToSelected.bind(this);
+    this.stateReset = this.stateReset.bind(this);
   }
 
   componentDidMount() {
@@ -44,7 +45,10 @@ class Dropdown extends React.Component {
     const centers = states.filter((state) => {
       return state.state === event.target.value;
     });
-    this.setState({ centers: centers[0].cities });
+    this.setState({
+      centers: centers[0].cities,
+      selectedCenter: '--Choose Center--',
+    });
   }
 
   changeCenter(event) {
@@ -56,6 +60,17 @@ class Dropdown extends React.Component {
     const { handleStateClick } = this.props;
     if (selectedCenter === '--Choose Center--') alert('Please select center');
     else handleStateClick(selectedCenter);
+  }
+
+  stateReset() {
+    console.log('State Reset');
+    const { handleStateReset } = this.props;
+    this.setState({
+      selectedState: '--Choose State--',
+      selectedCenter: '--Choose Center--',
+      centers: [],
+    });
+    handleStateReset();
   }
 
   render() {
@@ -71,11 +86,15 @@ class Dropdown extends React.Component {
             value={selectedState}
             onChange={this.changeState}
           >
-            <MenuItem value="--Choose State--" disabled>
+            <MenuItem key="s" value="--Choose State--" disabled>
               Select State
             </MenuItem>
             {states.map((place) => {
-              return <MenuItem value={place.state}>{place.state}</MenuItem>;
+              return (
+                <MenuItem key={`s${place.state}`} value={place.state}>
+                  {place.state}
+                </MenuItem>
+              );
             })}
           </Select>
         </div>
@@ -88,11 +107,15 @@ class Dropdown extends React.Component {
             onChange={this.changeCenter}
             displayEmpty
           >
-            <MenuItem value="--Choose Center--" disabled>
+            <MenuItem value="--Choose Center--" disabled key="a">
               Select Center
             </MenuItem>
             {centers.map((place) => {
-              return <MenuItem value={place}>{place}</MenuItem>;
+              return (
+                <MenuItem value={place} key={`s${place}`}>
+                  {place}
+                </MenuItem>
+              );
             })}
           </Select>
         </div>
@@ -105,6 +128,7 @@ class Dropdown extends React.Component {
         >
           Go to Location
         </Button>
+        <Button onClick={this.stateReset}>Reset</Button>
       </div>
     );
   }
