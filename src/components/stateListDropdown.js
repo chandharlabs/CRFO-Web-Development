@@ -45,7 +45,10 @@ class Dropdown extends React.Component {
     const centers = states.filter((state) => {
       return state.state === event.target.value;
     });
-    this.setState({ centers: centers[0].cities });
+    this.setState({
+      centers: centers[0].cities,
+      selectedCenter: '--Choose Center--',
+    });
   }
 
   changeCenter(event) {
@@ -67,10 +70,7 @@ class Dropdown extends React.Component {
       selectedCenter: '--Choose Center--',
       centers: [],
     });
-    console.log(this.state);
-
     handleStateReset();
-    console.log(this.state);
   }
 
   render() {
@@ -89,9 +89,9 @@ class Dropdown extends React.Component {
             <MenuItem key="s" value="--Choose State--" disabled>
               Select State
             </MenuItem>
-            {states.map((place, index) => {
+            {states.map((place) => {
               return (
-                <MenuItem key={'s' + place.state} value={place.state}>
+                <MenuItem key={`s${place.state}`} value={place.state}>
                   {place.state}
                 </MenuItem>
               );
@@ -110,7 +110,7 @@ class Dropdown extends React.Component {
             <MenuItem value="--Choose Center--" disabled key="a">
               Select Center
             </MenuItem>
-            {centers.map((place, index) => {
+            {centers.map((place) => {
               return (
                 <MenuItem value={place} key={`s${place}`}>
                   {place}
