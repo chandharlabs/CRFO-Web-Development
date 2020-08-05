@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Plot from 'react-plotly.js';
 import { readRemoteFile } from 'react-papaparse';
 import testCenters from '../data/testCenters';
@@ -23,7 +23,7 @@ function Towers(props) {
     centerTable.longitude.push(center.latitude);
     centerTable.LocationCode.push(center.LocationCode);
   });
-  useEffect(() => {
+  const centerData = useMemo(() => {
     console.log('Reading sensor data');
     fetch(`${window.location.href}sensorData.json`)
       .then((response) => {
@@ -53,15 +53,13 @@ function Towers(props) {
         //     text: textField,
         //   },
         // });
-        setCenters({
-          ...centers,
-          textField,
-        });
+        return textField;
       })
       .catch((err) =>
         console.error('Encountered error when accessing sensor data', err)
       );
-
+  }, []);
+  const towerData = useMemo(() => {
     console.log('Reading tower data');
     readRemoteFile(`${window.location.href}towers_in_range.csv`, {
       header: false,
@@ -120,16 +118,23 @@ function Towers(props) {
       fastMode: true,
     });
   }, []);
+  useEffect(() => {
+    setCenters({
+      ...centers,
+      centerData,
+    });
+  }, []);
   console.log('Sensor data', props.viewTowers);
   // const { centers } = this.state;
   // let { center } = this.state;
   const Mapdata = [
     {
-      lon: center[0],
-      lat: center[1],
+      lon: 78.9629,
+      lat: 20.5937,
       type: 'scattermapbox',
     },
   ];
+
   // let zoom = 4;
   const { viewTowers } = props;
   if (viewTowers) {
@@ -173,6 +178,7 @@ function Towers(props) {
   }
   // if (this.props.selectedLocation.state.LocationCode) zoom = 10;
   const { selectedLocation } = props;
+  console.log('selected location', selectedLocation);
   // props and states should be updated in their own lifecycle methods
   // this is hacky, but allows for quick prototyping.
   useEffect(() => {
@@ -198,6 +204,7 @@ function Towers(props) {
       });
     }
   }, [selectedLocation.state.LocationCode]);
+  console.log('locationCode', selectedLocation.state.LocationCode);
 
   console.log('Data', data);
   console.log('Mapdata', Mapdata);
