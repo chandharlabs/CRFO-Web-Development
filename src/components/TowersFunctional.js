@@ -16,6 +16,7 @@ function Towers(props) {
   const [center, setCenter] = useState([20.5937, 78.9629]);
   const [centers, setCenters] = useState(centerTable);
   const [zoom, setZoom] = useState(4);
+  // console.log('state', data, center, centers, zoom);
   testCenters.forEach((center) => {
     centerTable.state.push(center.state);
     centerTable.city.push(center.city);
@@ -59,7 +60,8 @@ function Towers(props) {
         console.error('Encountered error when accessing sensor data', err)
       );
   }, []);
-  const towerData = useMemo(() => {
+  useEffect(() => {
+    // let temp;
     console.log('Reading tower data');
     readRemoteFile(`${window.location.href}towers_in_range.csv`, {
       header: false,
@@ -111,26 +113,31 @@ function Towers(props) {
         // });
         setData({ lte, gsm, umts });
         console.log('Parsing complete:', data, results, file);
+        // temp = { lte, gsm, umts };
+        // console.log('temp', temp);
       },
       error: (error, file) => {
         console.log('Error occuered when reading file', file, error);
       },
       fastMode: true,
     });
+    // console.log('temp', temp);
   }, []);
+  // console.log('towerData', towerData);
   useEffect(() => {
     setCenters({
       ...centers,
       centerData,
     });
+    // setCenter([20.5937, 78.9629]);
   }, []);
-  console.log('Sensor data', props.viewTowers);
+  // console.log('Sensor data', props.viewTowers);
   // const { centers } = this.state;
   // let { center } = this.state;
   const Mapdata = [
     {
-      lon: 78.9629,
-      lat: 20.5937,
+      lon: 0,
+      lat: 0,
       type: 'scattermapbox',
     },
   ];
@@ -178,15 +185,20 @@ function Towers(props) {
   }
   // if (this.props.selectedLocation.state.LocationCode) zoom = 10;
   const { selectedLocation } = props;
-  console.log('selected location', selectedLocation);
+  // console.log('selected location', selectedLocation);
   // props and states should be updated in their own lifecycle methods
   // this is hacky, but allows for quick prototyping.
   useEffect(() => {
-    setCenter([
-      selectedLocation.state.longitude,
-      selectedLocation.state.latitude - 1.5,
-    ]);
-    setZoom(10);
+    if (selectedLocation.state.LocationCode) {
+      setCenter([
+        selectedLocation.state.longitude,
+        selectedLocation.state.latitude - 1.5,
+      ]);
+      setZoom(10);
+    } else {
+      setCenter([20.5937, 78.9629]);
+      setZoom(4);
+    }
     if (props.viewTestCenters) {
       Mapdata.push({
         lon: [selectedLocation.state.latitude], // These flipped values are used throughout the application
@@ -204,10 +216,10 @@ function Towers(props) {
       });
     }
   }, [selectedLocation.state.LocationCode]);
-  console.log('locationCode', selectedLocation.state.LocationCode);
+  // console.log('locationCode', selectedLocation.state.LocationCode);
 
-  console.log('Data', data);
-  console.log('Mapdata', Mapdata);
+  // console.log('Data', data);
+  // console.log('Mapdata', Mapdata);
 
   return (
     <Plot
