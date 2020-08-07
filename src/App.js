@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Map from './components/Map.js';
-import Towers from './components/Towers';
+// import Map from './components/Map.js';
+import Towers from './components/TowersFunctional';
 import IndiaData from './components/stateWiseList/IndiaData';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
