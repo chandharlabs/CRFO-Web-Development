@@ -2,6 +2,8 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import classNames from 'classnames/bind';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
+
 const cx = classNames.bind(require('./appHeader.module.css'));
 
 const AppHeader = (props) => {
@@ -30,5 +32,8 @@ const AppHeader = (props) => {
       </AppBar>
     </>
   );
+};
+AppHeader.propTypes = {
+  logout: PropTypes.func.isRequired,
 };
 export default AppHeader;
