@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
-// import Map from './components/Map.js';
 import Towers from './components/TowersFunctional';
 import IndiaData from './components/stateWiseList/IndiaData';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import IconButton from '@material-ui/core/IconButton';
 import { withAuth0 } from '@auth0/auth0-react';
-
 import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import AppTable from './components/stateWiseList/locationwiseChart.js';
 import LandingPage from './components/landingPage';
-// import landingPage from './components/landingPage';
 const cx = classNames.bind(require('./App.module.css'));
 
 class App extends Component {
@@ -30,17 +24,11 @@ class App extends Component {
       newsSearchKeyword: 'India',
       showTestCenters: true,
       showTowers: true,
-      dimensions: {
-        height: window.innerHeight,
-        width: window.innerWidth,
-      },
       showLeftNav: true,
       selectedLocationId: null,
       showLTE: true,
     };
   }
-
-  mobileWindowSizeBreakPoint = 767;
 
   handleStateWiseDataSuccess = (indiaData) => {
     this.setState({
@@ -60,11 +48,10 @@ class App extends Component {
       },
       selectedLocCoordinate: [stateData.longitude, stateData.latitude],
       selectedLocationId: Number(locationNoStr) - 1,
-      selectedLocationDataDisplay:
-        this.state.dimensions.width <= this.mobileWindowSizeBreakPoint,
     });
     console.log(this.state);
   };
+
   handleStateReset = () => {
     this.setState({
       selectedLocationData: { state: [], sensor: [] },
@@ -73,17 +60,6 @@ class App extends Component {
     });
   };
 
-  handleResize = (_) => {
-    let dimension = {
-      height: window.innerHeight,
-      width: window.innerWidth,
-    };
-    this.setState({
-      dimensions: {
-        ...dimension,
-      },
-    });
-  };
   handleClose = (_) => {
     this.setState({
       selectedLocationDataDisplay: false,
@@ -102,22 +78,15 @@ class App extends Component {
     });
   };
 
-  toggleLeftNav = (value) => {
+  toggleLeftNav = () => {
     this.setState({
       showLeftNav: !this.state.showLeftNav,
     });
   };
-  toggleLTE = (_) => {
+  toggleLTE = () => {
     this.setState({
       showLTE: !this.state.showLTE,
     });
-  };
-  componentDidMount = (_) => {
-    window.addEventListener('resize', this.handleResize);
-  };
-
-  componentWillUnmount = () => {
-    window.removeEventListener('resize', this.handleResize);
   };
 
   render() {
@@ -125,11 +94,7 @@ class App extends Component {
       indiaData,
       showTestCenters,
       showTowers,
-      dimensions,
       selectedLocationData,
-      // newsSearchKeyword,
-      selectedLocationDataDisplay,
-      // selectedLocCoordinate,
       selectedLocationId,
       showLTE,
     } = this.state;
@@ -144,14 +109,6 @@ class App extends Component {
           {isAuthenticated && (
             <section className={cx('app-container')}>
               <div className={cx('map-wrapper')}>
-                {/* <Map
-                // onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
-                // onDistrictWiseDataGetSuccess={
-                // this.handleDistrictWiseDataSuccess
-                // }
-                // viewTestCenters={showTestCenters}
-                // selectedLocation={selectedLocationData}
-                /> */}
                 <Towers
                   onStateWiseDataGetSuccess={this.handleStateWiseDataSuccess}
                   onDistrictWiseDataGetSuccess={
@@ -180,62 +137,29 @@ class App extends Component {
                       handleStateReset={this.handleStateReset}
                     />
                   </div>
-                  {dimensions.width > this.mobileWindowSizeBreakPoint && (
-                    <>
-                      {selectedLocationId !== null && (
-                        <div className={cx('new-wrapper')}>
-                          <AppTable selectedLocation={selectedLocationData} />
-                        </div>
-                      )}
-                      <span
-                        className={cx('toggle-button')}
-                        onClick={this.toggleLeftNav}
-                      >
-                        {this.state.showLeftNav ? 'Hide' : 'Show'}
-                      </span>
-                    </>
-                  )}
-                  {dimensions.width <= this.mobileWindowSizeBreakPoint && (
-                    <Dialog
-                      onClose={this.handleClose}
-                      open={selectedLocationDataDisplay}
-                      fullWidth={true}
-                      className={`${cx('customized-dialog-wrapper')}`}
-                    >
-                      <DialogTitle
-                        id="customized-dialog-title"
-                        onClose={this.handleClose}
-                        className="customized-dialog-title"
-                      ></DialogTitle>
-                      {/* {selectedLocationData.loc} */}
-                      <IconButton
-                        aria-label="close"
-                        onClick={this.handleClose}
-                        style={{ float: 'right' }}
-                        className={`${cx('close-button')}`}
-                      >
-                        X
-                      </IconButton>
-                      <div className={`${cx('new-wrapper')} ${cx('test')}`}>
-                        {/* <SelectedLocationData
-                        locationData={{
-                          ...selectedLocationData,
-                          loc: newsSearchKeyword,
-                        }}
-                      /> */}
+
+                  <>
+                    {selectedLocationId !== null && (
+                      <div className={cx('new-wrapper')}>
+                        <AppTable selectedLocation={selectedLocationData} />
                       </div>
-                    </Dialog>
-                  )}
+                    )}
+                    <span
+                      className={cx('toggle-button')}
+                      onClick={this.toggleLeftNav}
+                    >
+                      {this.state.showLeftNav ? 'Hide' : 'Show'}
+                    </span>
+                  </>
                 </div>
                 {<AppFooter></AppFooter>}
               </div>
             </section>
-          )}{' '}
+          )}
         </section>
       </>
     );
   }
 }
 
-// export default withAuth0(App);
 export default withAuth0(App);
