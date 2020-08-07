@@ -15,7 +15,7 @@ const AppHeader = (props) => {
         color="primary"
         style={{ backgroundColor: '#efefef' }}
       >
-        <a href="https://crfo.org/" target="_blank" rel="noopener noreferrer">
+        <a href="https://map.crfo.org/" target="_blank" rel="noopener noreferrer">
           <img
             className={cx('logo')}
             src="./crfoLogo.svg"
