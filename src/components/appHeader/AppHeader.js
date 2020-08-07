@@ -1,7 +1,7 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import classNames from 'classnames/bind';
-
+import Button from '@material-ui/core/Button';
 const cx = classNames.bind(require('./appHeader.module.css'));
 
 const AppHeader = (props) => {
@@ -23,7 +23,10 @@ const AppHeader = (props) => {
             height={80}
           />
         </a>
-        <button onClick={logout}>Log Out</button>
+        <Button variant="outlined" onClick={logout}>
+          Log Out
+        </Button>
+        <p />
       </AppBar>
     </>
   );
