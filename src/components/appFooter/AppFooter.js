@@ -7,14 +7,14 @@ const AppFooter = () => {
   return (
     <div className={cx('footer-container')}>
       <footer>
-{/*         India Mapped using{' '}
+        India Mapped using{' '}
         <a
           href="https://openstreetmap.org/"
           target="_blank"
           rel="noopener noreferrer"
         >
           OpenStreetMap.org
-        </a> */}
+        </a>
       </footer>
     </div>
   );

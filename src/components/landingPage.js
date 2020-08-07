@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Box, makeStyles } from '@material-ui/core';
-// import { Button } from '@material-ui/core/Button';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
@@ -20,7 +19,11 @@ function LandingPage(props) {
     <div className={classes.login}>
       <Card wid>
         <Box height="15em">
-          <img src="https://i.ibb.co/znRpb7Q/crfoLogo.png" alt="CRFO Logo" height={80} />
+          <img
+            src="https://i.ibb.co/znRpb7Q/crfoLogo.png"
+            alt="CRFO Logo"
+            height={80}
+          />
           <h1>Welcome to CRFO </h1>
           <Button onClick={loginWithRedirect} variant="outlined" size="medium">
             Log In

@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Paper, TableContainer } from '@material-ui/core';
 
 import operatorData from '../../data/operatorData';
+
 export default function AppTable(props) {
   const { selectedLocation } = props;
   const locationNoStr = selectedLocation.state.LocationCode.replace('L', '');
@@ -80,7 +81,6 @@ export default function AppTable(props) {
     </TableContainer>
   );
 
-  // console.log(data);
   return (
     <div
       style={{
