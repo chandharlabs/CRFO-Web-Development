@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import testCenter from '../../data/testCenters';
 import Dropdown from '../stateListDropdown';
+import ImportFile from '../uploadFile';
 
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 
@@ -33,6 +34,7 @@ export default function IndiaData(props) {
             handleStateClick={handleTestClick}
             handleStateReset={stateReset}
           />
+          <ImportFile />
         </section>
       </section>
     </>
