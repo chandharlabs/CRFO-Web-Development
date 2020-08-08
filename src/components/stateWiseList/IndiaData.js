@@ -7,7 +7,7 @@ import Dropdown from '../stateListDropdown';
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 
 export default function IndiaData(props) {
-  const { onStateSelect, handleStateReset } = props;
+  const { onStateSelect, handleStateReset, onTowerToggle, viewTestCenters } = props;
 
   const handleTestClick = (center) => {
     const selectedState = testCenter.find((location) => {
@@ -20,6 +20,13 @@ export default function IndiaData(props) {
   };
   return (
     <>
+      <div>
+        <button onClick={() => onTowerToggle(!viewTestCenters)}>
+        {
+          viewTestCenters ? "Show Heatmap" : "Show Towers"
+        }
+        </button>
+      </div>
       <section className={cx('list-wrapper')}>
         <section className={cx('list-content')}>
           <Dropdown
