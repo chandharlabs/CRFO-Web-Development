@@ -145,6 +145,7 @@ function Towers(props) {
   // let zoom = 4;
   const { viewTowers } = props;
   if (viewTowers) {
+    // Show tower data
     Mapdata.push(
       {
         lon: data.lte[4],
@@ -171,6 +172,16 @@ function Towers(props) {
         text: data.umts[7],
       }
     );
+  } else {
+    // Show heatmap data
+    Mapdata.push(
+      {
+        lon: data.lte[4],
+        lat: data.lte[5],
+        type: 'densitymapbox',
+        z: data.lte[2]
+      }
+    )
   }
 
   if (props.viewTestCenters) {

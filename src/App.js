@@ -77,6 +77,13 @@ class App extends Component {
       showTowers: !!showTowers,
     });
   };
+  
+  handleTowerTypeToggle = (towerType) => {
+    this.setState({
+      showTestCenters: !!towerType,
+      showTowers: !!towerType
+    })
+  }
 
   toggleLeftNav = () => {
     this.setState({
@@ -131,7 +138,7 @@ class App extends Component {
                     <IndiaData
                       indiaData={indiaData}
                       onStateSelect={this.handleStateSelect}
-                      onTestCenterToggle={this.handleTestCenterToggle}
+                      onTowerToggle={this.handleTowerTypeToggle}
                       viewTestCenters={showTestCenters}
                       viewLTE={showLTE}
                       handleStateReset={this.handleStateReset}
