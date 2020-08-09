@@ -143,7 +143,7 @@ function Towers(props) {
   ];
 
   // let zoom = 4;
-  const { viewTowers } = props;
+  const { viewTowers, heatdata } = props;
   if (viewTowers) {
     // Show tower data
     Mapdata.push(
@@ -174,14 +174,19 @@ function Towers(props) {
     );
   } else {
     // Show heatmap data
-    Mapdata.push(
-      {
-        lon: data.lte[4],
-        lat: data.lte[5],
-        type: 'densitymapbox',
-        z: data.lte[2]
-      }
-    )
+    if(heatdata.val == undefined)
+      alert("No heatmap data found, please upload a csv file with the following columns: ['lon', 'lat', 'val']")
+    else {
+      console.log(heatdata)
+      Mapdata.push(
+        {
+          lon: heatdata.lon,
+          lat: heatdata.lat,
+          type: 'densitymapbox',
+          z: heatdata.val
+        }
+      )
+    }
   }
 
   if (props.viewTestCenters) {
