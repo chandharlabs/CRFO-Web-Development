@@ -27,6 +27,7 @@ class App extends Component {
       showLeftNav: true,
       selectedLocationId: null,
       showLTE: true,
+      heatdata: {},
     };
   }
 
@@ -96,6 +97,12 @@ class App extends Component {
     });
   };
 
+  handleHeatdata = (data) => {
+    this.setState({
+      heatdata: data
+    })
+  }
+
   render() {
     let {
       indiaData,
@@ -104,6 +111,7 @@ class App extends Component {
       selectedLocationData,
       selectedLocationId,
       showLTE,
+      heatdata,
     } = this.state;
     const { isAuthenticated, loginWithRedirect, logout } = this.props.auth0;
 
@@ -124,6 +132,7 @@ class App extends Component {
                   viewTestCenters={showTestCenters}
                   viewTowers={showTowers}
                   selectedLocation={selectedLocationData}
+                  heatdata={heatdata}
                 />
               </div>
 
@@ -142,6 +151,8 @@ class App extends Component {
                       viewTestCenters={showTestCenters}
                       viewLTE={showLTE}
                       handleStateReset={this.handleStateReset}
+                      handleHeatdata={this.handleHeatdata}
+                      heatdata={heatdata}
                     />
                   </div>
 
