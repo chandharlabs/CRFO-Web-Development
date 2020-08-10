@@ -16,6 +16,7 @@
   position: absolute;
   width: 600px;
   background: #fff;
+  height: 100%;
 }
 
 .tracker-list-container {

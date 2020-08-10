@@ -1,28 +1,116 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { CSVReader } from 'react-papaparse';
+import Button from '@material-ui/core/Button';
 
-function ImportFile(props) {
-  let fileReader;
-  const handleFileRead = (e) => {
-    const content = fileReader.result;
-    console.log(content);
-  };
-  function handleFileChosen(file) {
-    fileReader = new FileReader();
-    fileReader.onloadend = handleFileRead;
-    fileReader.readAsText(file);
+const buttonRef = React.createRef();
+
+export default class ImportFile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
   }
+  handleOpenDialog = (e) => {
+    // Note that the ref is set async, so it might be null at some point
+    if (buttonRef.current) {
+      buttonRef.current.open(e);
+    }
+  };
 
-  return (
-    <div>
-      input
-      <input
-        type="file"
-        id="file"
-        accept=".csv"
-        onChange={(e) => handleFileChosen(e.target.files[0])}
-      />
-    </div>
-  );
+  handleOnFileLoad = (data) => {
+    console.log('---------------------------');
+    console.log(data);
+    this.setState({ data: data });
+    console.log('---------------------------');
+    data.shift();
+    data.pop();
+    let lat = [];
+    let lon = [];
+    let strength = [];
+    data.map((val) => {
+      console.log(val.data);
+      lat.push(val.data[0]);
+      lon.push(val.data[1]);
+      strength.push(val.data[2]);
+    });
+    console.log('data:', lat, lon, strength);
+
+    // console.log(data.data);
+    // data = data.map((col, i) => data.map((row) => row[i]));
+    // console.log(data);
+    // this.props.setHeatmapData();
+    // this.props.setHeatmap(true);
+    console.log(this.state.data);
+    this.props.setHeatmapData({ lat: lat, lon: lon, val: strength });
+  };
+
+  handleOnError = (err, file, inputElem, reason) => {
+    console.log(err);
+  };
+
+  handleOnRemoveFile = (data) => {
+    console.log('---------------------------');
+    console.log(data);
+    console.log('---------------------------');
+  };
+
+  handleRemoveFile = (e) => {
+    // Note that the ref is set async, so it might be null at some point
+    if (buttonRef.current) {
+      buttonRef.current.removeFile(e);
+    }
+  };
+
+  render() {
+    return (
+      <>
+        <h5>Upload .csv file to see heatmap</h5>
+        <CSVReader
+          ref={buttonRef}
+          onFileLoad={this.handleOnFileLoad}
+          onError={this.handleOnError}
+          noClick
+          noDrag
+          config={{ header: false, dynamicTyping: true, worker: true }}
+          onRemoveFile={this.handleOnRemoveFile}
+          accept=".csv"
+        >
+          {({ file }) => (
+            <aside
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                marginBottom: 10,
+              }}
+            >
+              <Button
+                type="button"
+                variant="outlined"
+                size="small"
+                onClick={this.handleOpenDialog}
+              >
+                Browe file
+              </Button>{' '}
+              <span
+                style={{
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  borderColor: '#ccc',
+                  height: 50,
+                  lineHeight: 2.5,
+                  // marginTop: 5,
+                  // marginBottom: 5,
+                  margin: 5,
+                  paddingLeft: 13,
+                  paddingTop: 3,
+                  width: '60%',
+                }}
+              >
+                {file && file.name}
+              </span>
+            </aside>
+          )}
+        </CSVReader>
+      </>
+    );
+  }
 }
-
-export default ImportFile;

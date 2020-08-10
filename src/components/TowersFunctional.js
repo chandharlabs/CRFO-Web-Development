@@ -112,6 +112,7 @@ function Towers(props) {
         //   },
         // });
         setData({ lte, gsm, umts });
+        console.log('lte', lte);
         console.log('Parsing complete:', data, results, file);
         // temp = { lte, gsm, umts };
         // console.log('temp', temp);
@@ -173,15 +174,16 @@ function Towers(props) {
       }
     );
   } else {
-    // Show heatmap data
-    Mapdata.push(
-      {
-        lon: data.lte[4],
-        lat: data.lte[5],
+    console.log(props.heatData.val.length);
+    if (props.heatData.val.length) {
+      Mapdata.push({
+        lon: props.heatData.lon,
+        lat: props.heatData.lat,
         type: 'densitymapbox',
-        z: data.lte[2]
-      }
-    )
+        z: props.heatData.val,
+      });
+    } else alert('upload proper csv file');
+    // Show heatmap data
   }
 
   if (props.viewTestCenters) {

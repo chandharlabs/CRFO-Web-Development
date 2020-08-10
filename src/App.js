@@ -27,6 +27,7 @@ class App extends Component {
       showLeftNav: true,
       selectedLocationId: null,
       showLTE: true,
+      heatData: { lat: [], lon: [], val: [] },
     };
   }
 
@@ -77,13 +78,15 @@ class App extends Component {
       showTowers: !!showTowers,
     });
   };
-  
+
   handleTowerTypeToggle = (towerType) => {
-    this.setState({
-      showTestCenters: !!towerType,
-      showTowers: !!towerType
-    })
-  }
+    if (this.state.heatData.val.length) {
+      this.setState({
+        showTestCenters: !!towerType,
+        showTowers: !!towerType,
+      });
+    } else alert('upload proper csv file');
+  };
 
   toggleLeftNav = () => {
     this.setState({
@@ -95,6 +98,10 @@ class App extends Component {
       showLTE: !this.state.showLTE,
     });
   };
+  handleHeatmapData = (data) => {
+    this.setState({ heatData: data });
+    console.log(this.state.heatData);
+  };
 
   render() {
     let {
@@ -104,6 +111,7 @@ class App extends Component {
       selectedLocationData,
       selectedLocationId,
       showLTE,
+      heatData,
     } = this.state;
     const { isAuthenticated, loginWithRedirect, logout } = this.props.auth0;
 
@@ -124,6 +132,7 @@ class App extends Component {
                   viewTestCenters={showTestCenters}
                   viewTowers={showTowers}
                   selectedLocation={selectedLocationData}
+                  heatData={heatData}
                 />
               </div>
 
@@ -142,6 +151,7 @@ class App extends Component {
                       viewTestCenters={showTestCenters}
                       viewLTE={showLTE}
                       handleStateReset={this.handleStateReset}
+                      handleHeatmapData={this.handleHeatmapData}
                     />
                   </div>
 
@@ -159,7 +169,7 @@ class App extends Component {
                     </span>
                   </>
                 </div>
-                {<AppFooter></AppFooter>}
+                {/* {<AppFooter></AppFooter>} */}
               </div>
             </section>
           )}
