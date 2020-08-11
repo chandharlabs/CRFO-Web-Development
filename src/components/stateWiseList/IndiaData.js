@@ -29,15 +29,6 @@ export default function IndiaData(props) {
 
   return (
     <>
-      <div>
-        <p />
-        <Button
-          variant="contained"
-          onClick={() => onTowerToggle(!viewTestCenters)}
-        >
-          {viewTestCenters ? 'Show Heatmap' : 'Show Towers'}
-        </Button>
-      </div>
       <section className={cx('list-wrapper')}>
         <section className={cx('list-content')}>
           <Dropdown
@@ -45,8 +36,17 @@ export default function IndiaData(props) {
             handleStateReset={stateReset}
           />
           <br />
-          <hr />
-          <ImportFile setHeatmapData={handleHeatmapData} />
+          <hr />{' '}
+          <div>
+            <p />
+            <ImportFile setHeatmapData={handleHeatmapData} />{' '}
+            <Button
+              variant="contained"
+              onClick={() => onTowerToggle(!viewTestCenters)}
+            >
+              {viewTestCenters ? 'Show Heatmap' : 'Show Towers'}
+            </Button>
+          </div>
         </section>
       </section>
     </>
