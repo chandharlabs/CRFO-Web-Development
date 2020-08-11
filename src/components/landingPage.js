@@ -6,7 +6,7 @@ const useStyles = makeStyles({
   login: {
     position: 'absolute',
     left: '50%',
-    top: '50%',
+    top: '40%',
     transform: 'translate(-50%, -50%)',
     textAlign: 'center',
   },
