@@ -79,12 +79,12 @@ export default class ImportFile extends Component {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
+                flexWrap: 'wrap',
                 marginBottom: 10,
               }}
             >
               <Button
                 type="button"
-                variant="outlined"
                 size="small"
                 onClick={this.handleOpenDialog}
               >
@@ -96,13 +96,13 @@ export default class ImportFile extends Component {
                   borderStyle: 'solid',
                   borderColor: '#ccc',
                   height: 50,
-                  lineHeight: 2.5,
-                  // marginTop: 5,
-                  // marginBottom: 5,
-                  margin: 5,
-                  paddingLeft: 13,
-                  paddingTop: 3,
-                  width: '60%',
+
+                  margin: 15,
+                  // paddingLeft: 13,
+                  // paddingTop: 3,
+                  padding: 10,
+                  width: 'auto',
+                  minWidth: 150,
                 }}
               >
                 {file && file.name}

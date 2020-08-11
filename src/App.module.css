@@ -1,11 +1,12 @@
 .app-wrapper {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .app-container {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 
 .left-panel {
@@ -14,7 +15,7 @@
   flex-direction: column; */
 
   position: absolute;
-  width: 600px;
+  width: 650px;
   background: #fff;
   height: 100%;
 }

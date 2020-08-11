@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import testCenter from '../../data/testCenters';
 import Dropdown from '../stateListDropdown';
 import ImportFile from '../uploadFile';
-import Button from '@material-ui/core/Button';
 
 const cx = classNames.bind(require('./stateWiseList.module.css'));
 
@@ -16,8 +16,7 @@ export default function IndiaData(props) {
     viewTestCenters,
     handleHeatmapData,
   } = props;
-  const [heatmapData, setHeatmapData] = React.useState([]);
-  const [heatmap, setHeatmap] = React.useState(false);
+
   const handleTestClick = (center) => {
     const selectedState = testCenter.find((location) => {
       return location.city === center;
@@ -31,6 +30,7 @@ export default function IndiaData(props) {
   return (
     <>
       <div>
+        <p />
         <Button
           variant="contained"
           onClick={() => onTowerToggle(!viewTestCenters)}
@@ -43,12 +43,10 @@ export default function IndiaData(props) {
           <Dropdown
             handleStateClick={handleTestClick}
             handleStateReset={stateReset}
-            // heatmapData={heatmapData}
           />
-          <ImportFile
-            setHeatmapData={handleHeatmapData}
-            // setHeatmap={setHeatmap}
-          />
+          <br />
+          <hr />
+          <ImportFile setHeatmapData={handleHeatmapData} />
         </section>
       </section>
     </>
