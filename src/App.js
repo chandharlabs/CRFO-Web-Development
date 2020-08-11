@@ -4,7 +4,6 @@ import IndiaData from './components/stateWiseList/IndiaData';
 import { withAuth0 } from '@auth0/auth0-react';
 import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
-import AppFooter from './components/appFooter/AppFooter';
 import AppTable from './components/stateWiseList/locationwiseChart.js';
 import LandingPage from './components/landingPage';
 const cx = classNames.bind(require('./App.module.css'));
@@ -169,7 +168,6 @@ class App extends Component {
                     </span>
                   </>
                 </div>
-                {/* {<AppFooter></AppFooter>} */}
               </div>
             </section>
           )}
