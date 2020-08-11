@@ -18,13 +18,13 @@ function LandingPage(props) {
   return (
     <div className={classes.login}>
       <Card wid>
-        <Box height="15em">
+        <Box height="10em" width="20em">
           <img
-            src="https://i.ibb.co/znRpb7Q/crfoLogo.png"
+            src="https://image.flaticon.com/icons/svg/3029/3029124.svg"//"https://i.ibb.co/znRpb7Q/crfoLogo.png"
             alt="CRFO Logo"
-            height={80}
+            height={45}
           />
-          <h1>Welcome to CRFO </h1>
+          <h2>Welcome to CRFO Map</h2>
           <Button onClick={loginWithRedirect} variant="outlined" size="medium">
             Log In
           </Button>{' '}

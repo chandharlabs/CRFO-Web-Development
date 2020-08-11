@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 567px) {
   .logo {
     height: 30px;
   }

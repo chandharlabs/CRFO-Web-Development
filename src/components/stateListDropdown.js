@@ -77,7 +77,7 @@ class Dropdown extends React.Component {
     const { selectedCenter, selectedState, states, centers } = this.state;
     return (
       <div>
-        <p> View Statistics for specific states</p>
+        <h5> View data for specific states</h5>
         <div>
           <span>State: </span>
 
