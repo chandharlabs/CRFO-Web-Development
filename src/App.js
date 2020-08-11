@@ -4,7 +4,6 @@ import IndiaData from './components/stateWiseList/IndiaData';
 import { withAuth0 } from '@auth0/auth0-react';
 import classNames from 'classnames/bind';
 import AppHeader from './components/appHeader/AppHeader';
-import AppFooter from './components/appFooter/AppFooter';
 import AppTable from './components/stateWiseList/locationwiseChart.js';
 import LandingPage from './components/landingPage';
 const cx = classNames.bind(require('./App.module.css'));
@@ -27,7 +26,7 @@ class App extends Component {
       showLeftNav: true,
       selectedLocationId: null,
       showLTE: true,
-      heatdata: {},
+      heatData: { lat: [], lon: [], val: [] },
     };
   }
 
@@ -78,13 +77,15 @@ class App extends Component {
       showTowers: !!showTowers,
     });
   };
-  
+
   handleTowerTypeToggle = (towerType) => {
-    this.setState({
-      showTestCenters: !!towerType,
-      showTowers: !!towerType
-    })
-  }
+    if (this.state.heatData.val.length) {
+      this.setState({
+        showTestCenters: !!towerType,
+        showTowers: !!towerType,
+      });
+    } else alert('upload proper csv file');
+  };
 
   toggleLeftNav = () => {
     this.setState({
@@ -96,12 +97,10 @@ class App extends Component {
       showLTE: !this.state.showLTE,
     });
   };
-
-  handleHeatdata = (data) => {
-    this.setState({
-      heatdata: data
-    })
-  }
+  handleHeatmapData = (data) => {
+    this.setState({ heatData: data });
+    console.log(this.state.heatData);
+  };
 
   render() {
     let {
@@ -111,7 +110,7 @@ class App extends Component {
       selectedLocationData,
       selectedLocationId,
       showLTE,
-      heatdata,
+      heatData
     } = this.state;
     const { isAuthenticated, loginWithRedirect, logout } = this.props.auth0;
 
@@ -132,7 +131,7 @@ class App extends Component {
                   viewTestCenters={showTestCenters}
                   viewTowers={showTowers}
                   selectedLocation={selectedLocationData}
-                  heatdata={heatdata}
+				  heatData={heatData}
                 />
               </div>
 
@@ -151,8 +150,7 @@ class App extends Component {
                       viewTestCenters={showTestCenters}
                       viewLTE={showLTE}
                       handleStateReset={this.handleStateReset}
-                      handleHeatdata={this.handleHeatdata}
-                      heatdata={heatdata}
+                      handleHeatmapData={this.handleHeatmapData}
                     />
                   </div>
 
@@ -170,7 +168,6 @@ class App extends Component {
                     </span>
                   </>
                 </div>
-                {<AppFooter></AppFooter>}
               </div>
             </section>
           )}

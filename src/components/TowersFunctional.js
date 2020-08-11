@@ -112,6 +112,7 @@ function Towers(props) {
         //   },
         // });
         setData({ lte, gsm, umts });
+        console.log('lte', lte);
         console.log('Parsing complete:', data, results, file);
         // temp = { lte, gsm, umts };
         // console.log('temp', temp);
@@ -143,7 +144,7 @@ function Towers(props) {
   ];
 
   // let zoom = 4;
-  const { viewTowers, heatdata } = props;
+  const { viewTowers } = props;
   if (viewTowers) {
     // Show tower data
     Mapdata.push(
@@ -173,20 +174,16 @@ function Towers(props) {
       }
     );
   } else {
+    console.log(props.heatData.val.length);
+    if (props.heatData.val.length) {
+      Mapdata.push({
+        lon: props.heatData.lon,
+        lat: props.heatData.lat,
+        type: 'densitymapbox',
+        z: props.heatData.val,
+      });
+    } else alert('upload proper csv file');
     // Show heatmap data
-    if(heatdata.val == undefined)
-      alert("No heatmap data found, please upload a csv file with the following columns: ['lon', 'lat', 'val']")
-    else {
-      console.log(heatdata)
-      Mapdata.push(
-        {
-          lon: heatdata.lon,
-          lat: heatdata.lat,
-          type: 'densitymapbox',
-          z: heatdata.val
-        }
-      )
-    }
   }
 
   if (props.viewTestCenters) {
