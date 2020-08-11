@@ -131,7 +131,6 @@ class App extends Component {
                   viewTestCenters={showTestCenters}
                   viewTowers={showTowers}
                   selectedLocation={selectedLocationData}
-                  // heatData={heatData}
                 />
               </div>
 
