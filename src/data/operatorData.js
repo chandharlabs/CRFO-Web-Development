@@ -1,633 +1,993 @@
 const operatorData = [
-  [// Andhra Pradesh
+  [
+    // Andhra Pradesh
     {
       band: '1800 MHz',
       oper: 'Tata',
       ulink: '1741.7-1744.1',
+
       dlink: '1836.7-1839.1',
+      ulink_link: 'https://www.google.com',
+      dlink_link: 'https://www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2325-2335',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2335-2345',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2635-2645',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Arunachal Pradesh
+  [
+    // Arunachal Pradesh
     {
       band: '1800 MHz',
       oper: 'Airtel',
       ulink: '1753.5-1754.9',
       dlink: '1848.5-1849.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Vodafone',
       ulink: '1745.7-1753.5',
       dlink: '1840.7-1848.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2357.5-2367.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2347.5-2357.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Assam
+  [
+    // Assam
     {
       band: '1800 MHz',
       oper: 'Airtel',
       ulink: '1743.7-1747.5',
       dlink: '1838.7-1842.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1738.7-1743.7',
       dlink: '1833.7-1838.7',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Vodafone',
       ulink: '1730.7-1738.7',
       dlink: '1825.7-1833.7',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2347.5-2357.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2357.5-2367.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Bihar
+  [
+    // Bihar
     {
       band: '1800 MHz',
       oper: 'Aircel',
       ulink: '1736.5-1738.3',
       dlink: '1831.5-1833.3',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1726.5-1731.5',
       dlink: '1821.5-1826.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Reliance',
       ulink: '1731.5-1736.5',
       dlink: '1826.5-1831.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Airtel',
       ulink: '1944-1949',
       dlink: '2134-2139',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Idea',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2357.5-2367.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2367.5-2377.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Chattisgarh
+  [
+    // Chattisgarh
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1737.1-1741.7',
       dlink: '1832.1-1836.7',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Idea',
       ulink: '2352.5-2362.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2362.5-2372.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2555',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Delhi
+  [
+    // Delhi
     {
       band: '1800 MHz',
       oper: 'Vodafone',
       ulink: '1731.3-1733.3',
       dlink: '1826.3-1828.3',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Airtel',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2350-2360',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2360-2370',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2635-2655',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Goa
+  [
+    // Goa
     {
       band: '1800 MHz',
       oper: 'Airtel',
       ulink: '1751.5-1756.5',
       dlink: '1846.5-1851.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1761.5-1763.5',
       dlink: '1856.5-1858.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Tatas',
       ulink: '1756.5-1761.5',
       dlink: '1851.5-1856.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Vodafone',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Idea',
       ulink: '2365-2375',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2355-2365',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2635-2655',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Gujarat
+  [
+    // Gujarat
     {
       band: '800 MHz',
       oper: 'Reliance',
       ulink: '829.935-843.135',
       dlink: '874.935-888.135',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1735.7-1744.1',
       dlink: '1830.7-1839.1',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Vodafone',
       ulink: '1744.1-1747.1',
       dlink: '1839.1-1842.1',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2350 -2360',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2360-2370',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2635-2655',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Haryana
+  [
+    // Haryana
     {
       band: '1800 MHz',
       oper: 'Airtel',
       ulink: '1735.3-1736.9',
       dlink: '1830.3-1831.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1736.9-1741.7',
       dlink: '1831.9-1836.7',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Reliance',
       ulink: '1734.3-1735.3',
       dlink: '1829.3-1830.3',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Vodafone',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2545-2555',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2535-2545',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Himachal Pradesh
+  [
+    // Himachal Pradesh
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1732.1-1732.7',
       dlink: '1827.1-1827.7',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Reliance',
       ulink: '1732.7-1737.7',
       dlink: '1827.7-1832.7',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2377.5-2387.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2367.5-2377.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Jammu and Kashmir
+  [
+    // Jammu and Kashmir
     {
       band: '1800 MHz',
       oper: 'Airtel',
       ulink: '1747.9-1750.3',
       dlink: '1842.9-1845.3',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1750.3-1755.3',
       dlink: '1845.3-1850.3',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Reliance Communications',
       ulink: '1742.9-1747.9',
       dlink: '1837.9-1842.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Reliance',
       ulink: '1732.9-1742.9',
       dlink: '1827.9-1837.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Airtel',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Jharkhand
+  [
+    // Jharkhand
     {
       band: '1800 MHz',
       oper: 'Aircel',
       ulink: '1736.5-1738.3',
       dlink: '1831.5-1833.3',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1726.5-1731.5',
       dlink: '1821.5-1826.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Reliance',
       ulink: '1731.5-1736.5',
       dlink: '1826.5-1831.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Airtel',
       ulink: '1944-1949',
       dlink: '2134-2139',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Idea',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2357.5-2367.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2367.5-2377.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Karnataka
+  [
+    // Karnataka
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2350-2360',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2360-2370',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Kerala
+  [
+    // Kerala
     {
       band: '1800 MHz',
       oper: 'Vodafone',
       ulink: '1739.7-1740.3',
       dlink: '1834.7-1835.3',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Airtel',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Idea',
       ulink: '2360-2370',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2350-2360',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Madhya Pradesh
+  [
+    // Madhya Pradesh
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1737.1-1741.7',
       dlink: '1832.1-1836.7',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Idea',
       ulink: '2352.5-2362.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2362.5-2372.5',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2555',
       dlink: '-',
-    }
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Maharashtra
+  [
+    // Maharashtra
     {
       band: '1800 MHz',
       oper: 'Tatas',
       ulink: '1759.9-1764.9',
       dlink: '1854.9-1859.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Idea',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Airtel',
       ulink: '2355-2365',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2365-2375',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2635-2655',
       dlink: '-',
-    } 
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Maharashtra
+  [
+    // Maharashtra
     {
       band: '1800 MHz',
       oper: 'Airtel',
       ulink: '1751.5-1756.5',
       dlink: '1846.5-1851.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Idea',
       ulink: '1761.5-1763.5',
       dlink: '1856.5-1858.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '1800 MHz',
       oper: 'Tatas',
       ulink: '1756.5-1761.5',
       dlink: '1851.5-1856.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2100 MHz',
       oper: 'Vodafone',
       ulink: '1939-1944',
       dlink: '2129-3134',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Idea',
       ulink: '2365-2375',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2300 MHz',
       oper: 'Reliance',
       ulink: '2355-2365',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Idea',
       ulink: '2535-2545',
       dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
     },
     {
       band: '2500 MHz',
       oper: 'Vodafone',
       ulink: '2635-2655',
       dlink: '-',
-    }   
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
   ],
-  [// Manipur
+  [
+    // Manipur
+    {
+      band: '1800 MHz',
+      oper: 'Airtel',
+      ulink: '1753.5-1754.9',
+      dlink: '1848.5-1849.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '1800 MHz',
+      oper: 'Vodafone',
+      ulink: '1745.7-1753.5',
+      dlink: '1840.7-1848.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Airtel',
+      ulink: '2357.5-2367.5',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Reliance',
+      ulink: '2347.5-2357.5',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Idea',
+      ulink: '2535-2545',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Vodafone',
+      ulink: '2545-2555',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+  ],
+  [
+    // Meghalaya
+    {
+      band: '1800 MHz',
+      oper: 'Airtel',
+      ulink: '1753.5-1754.9',
+      dlink: '1848.5-1849.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '1800 MHz',
+      oper: 'Vodafone',
+      ulink: '1745.7-1753.5',
+      dlink: '1840.7-1848.5',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Airtel',
+      ulink: '2357.5-2367.5',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Reliance',
+      ulink: '2347.5-2357.5',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Idea',
+      ulink: '2535-2545',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Vodafone',
+      ulink: '2545-2555',
+      dlink: '-',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+  ],
+  [
+    // Mizoram
+    {
+      band: '1800 MHz',
+      oper: 'Airtel',
+      ulink: '1753.5-1754.9',
+      dlink: '1848.5-1849.9',
+      ulink_link: 'www.google.com',
+      dlink_link: 'www.google.com',
+    },
+    {
+      band: '1800 MHz',
+      oper: 'Vodafone',
+      ulink: '1745.7-1753.5',
+      dlink: '1840.7-1848.5',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Airtel',
+      ulink: '2357.5-2367.5',
+      dlink: '-',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Reliance',
+      ulink: '2347.5-2357.5',
+      dlink: '-',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Idea',
+      ulink: '2535-2545',
+      dlink: '-',
+    },
+    {
+      band: '2500 MHz',
+      oper: 'Vodafone',
+      ulink: '2545-2555',
+      dlink: '-',
+    },
+  ],
+  [
+    // Nagaland
     {
       band: '1800 MHz',
       oper: 'Airtel',
@@ -663,123 +1023,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// Meghalaya
-    {
-      band: '1800 MHz',
-      oper: 'Airtel',
-      ulink: '1753.5-1754.9',
-      dlink: '1848.5-1849.9',
-    },
-    {
-      band: '1800 MHz',
-      oper: 'Vodafone',
-      ulink: '1745.7-1753.5',
-      dlink: '1840.7-1848.5',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Airtel',
-      ulink: '2357.5-2367.5',
-      dlink: '-',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Reliance',
-      ulink: '2347.5-2357.5',
-      dlink: '-',
-    },
-    {
-      band: '2500 MHz',
-      oper: 'Idea',
-      ulink: '2535-2545',
-      dlink: '-',
-    },
-    {
-      band: '2500 MHz',
-      oper: 'Vodafone',
-      ulink: '2545-2555',
-      dlink: '-',
-    }
-  ],
-  [// Mizoram
-    {
-      band: '1800 MHz',
-      oper: 'Airtel',
-      ulink: '1753.5-1754.9',
-      dlink: '1848.5-1849.9',
-    },
-    {
-      band: '1800 MHz',
-      oper: 'Vodafone',
-      ulink: '1745.7-1753.5',
-      dlink: '1840.7-1848.5',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Airtel',
-      ulink: '2357.5-2367.5',
-      dlink: '-',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Reliance',
-      ulink: '2347.5-2357.5',
-      dlink: '-',
-    },
-    {
-      band: '2500 MHz',
-      oper: 'Idea',
-      ulink: '2535-2545',
-      dlink: '-',
-    },
-    {
-      band: '2500 MHz',
-      oper: 'Vodafone',
-      ulink: '2545-2555',
-      dlink: '-',
-    }
-  ],
-  [// Nagaland
-    {
-      band: '1800 MHz',
-      oper: 'Airtel',
-      ulink: '1753.5-1754.9',
-      dlink: '1848.5-1849.9',
-    },
-    {
-      band: '1800 MHz',
-      oper: 'Vodafone',
-      ulink: '1745.7-1753.5',
-      dlink: '1840.7-1848.5',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Airtel',
-      ulink: '2357.5-2367.5',
-      dlink: '-',
-    },
-    {
-      band: '2300 MHz',
-      oper: 'Reliance',
-      ulink: '2347.5-2357.5',
-      dlink: '-',
-    },
-    {
-      band: '2500 MHz',
-      oper: 'Idea',
-      ulink: '2535-2545',
-      dlink: '-',
-    },
-    {
-      band: '2500 MHz',
-      oper: 'Vodafone',
-      ulink: '2545-2555',
-      dlink: '-',
-    }
-  ],
-  [// Odisha
+  [
+    // Odisha
     {
       band: '2100 MHz',
       oper: 'Vodafone',
@@ -809,9 +1056,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// Puducherry
+  [
+    // Puducherry
     {
       band: '2100 MHz',
       oper: 'Vodafone',
@@ -829,9 +1077,10 @@ const operatorData = [
       oper: 'Reliance',
       ulink: '2367.5-2377.5',
       dlink: '-',
-    }
+    },
   ],
-  [ // Telangana
+  [
+    // Telangana
     {
       band: '1800 MHz',
       oper: 'Tata',
@@ -855,9 +1104,10 @@ const operatorData = [
       oper: 'Idea',
       ulink: '2635-2645',
       dlink: '-',
-    }
+    },
   ],
-  [// Punjab
+  [
+    // Punjab
     {
       band: '800 MHz',
       oper: 'Reliance',
@@ -899,9 +1149,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2535-2545',
       dlink: '-',
-    }
+    },
   ],
-  [// Rajasthan
+  [
+    // Rajasthan
     {
       band: '800 MHz',
       oper: 'Reliance',
@@ -955,9 +1206,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// Sikkim
+  [
+    // Sikkim
     {
       band: '1800 MHz',
       oper: 'Airtel',
@@ -993,9 +1245,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// Tamil Nadu
+  [
+    // Tamil Nadu
     {
       band: '2100 MHz',
       oper: 'Vodafone',
@@ -1013,9 +1266,10 @@ const operatorData = [
       oper: 'Reliance',
       ulink: '2367.5-2377.5',
       dlink: '-',
-    }
+    },
   ],
-  [ // Telangana
+  [
+    // Telangana
     {
       band: '1800 MHz',
       oper: 'Tata',
@@ -1039,9 +1293,10 @@ const operatorData = [
       oper: 'Idea',
       ulink: '2635-2645',
       dlink: '-',
-    }
+    },
   ],
-  [// Tripura
+  [
+    // Tripura
     {
       band: '1800 MHz',
       oper: 'Airtel',
@@ -1077,9 +1332,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// Uttar Pradesh 
+  [
+    // Uttar Pradesh
     {
       band: '800 MHz',
       oper: 'Reliance',
@@ -1121,9 +1377,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// Uttar Pradesh 
+  [
+    // Uttar Pradesh
     {
       band: '1800 MHz',
       oper: 'Idea',
@@ -1153,9 +1410,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// Uttarakhand 
+  [
+    // Uttarakhand
     {
       band: '1800 MHz',
       oper: 'Idea',
@@ -1185,9 +1443,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2545-2555',
       dlink: '-',
-    }
+    },
   ],
-  [// West Bengal
+  [
+    // West Bengal
     {
       band: '1800 MHz',
       oper: 'Idea',
@@ -1229,9 +1488,10 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2535-2545',
       dlink: '-',
-    }
+    },
   ],
-  [// West Bengal
+  [
+    // West Bengal
     {
       band: '1800 MHz',
       oper: 'Airtel',
@@ -1261,8 +1521,8 @@ const operatorData = [
       oper: 'Vodafone',
       ulink: '2635-2655',
       dlink: '-',
-    }
-  ]
+    },
+  ],
 ];
 
 console.log(operatorData[0]);

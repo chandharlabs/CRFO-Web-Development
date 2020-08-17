@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Paper, TableContainer } from '@material-ui/core';
 
 import operatorData from '../../data/operatorData';
+
 export default function AppTable(props) {
   const { selectedLocation } = props;
   const locationNoStr = selectedLocation.state.LocationCode.replace('L', '');
@@ -29,10 +30,16 @@ export default function AppTable(props) {
       {
         Header: 'Uplink (Mhz)',
         accessor: 'ulink',
+        Cell: ({ row, value }) => (
+          <a href={row.original.ulink_link}> {value}</a>
+        ),
       },
       {
         Header: 'Downlink (Mhz)',
         accessor: 'dlink',
+        Cell: ({ row, value }) => (
+          <a href={row.original.dlink_link}> {value}</a>
+        ),
       },
     ],
     []
