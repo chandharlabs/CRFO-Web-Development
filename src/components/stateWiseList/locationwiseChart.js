@@ -17,7 +17,6 @@ export default function AppTable(props) {
   const data = locationid === -1 ? [] : operatorData[locationid - 1];
   const image1 = `assets/Activity_status_L${locationid}.jpg`;
   const image2 = `assets/Percentage_activity_L${locationid}.jpg`;
-  const image3 = `assets/883MAnimation3_20_L${locationid}.gif`;
   const columns = React.useMemo(
     () => [
       {
@@ -31,10 +30,16 @@ export default function AppTable(props) {
       {
         Header: 'Uplink (Mhz)',
         accessor: 'ulink',
+        Cell: ({ row, value }) => (
+          <a href={row.original.ulink_link}> {value}</a>
+        ),
       },
       {
         Header: 'Downlink (Mhz)',
         accessor: 'dlink',
+        Cell: ({ row, value }) => (
+          <a href={row.original.dlink_link}> {value}</a>
+        ),
       },
     ],
     []
@@ -81,6 +86,7 @@ export default function AppTable(props) {
     </TableContainer>
   );
 
+  // console.log(data);
   return (
     <div
       style={{
@@ -92,18 +98,6 @@ export default function AppTable(props) {
         Cellular spectrum Allocation
       </p>
       <Paper>{locationid === -1 ? <p>No Data For the state</p> : table}</Paper>
-      <p style={{ textDecoration: 'underline', alignSelf: 'center' }}>
-        Spectrogram - 883 MHz LTE Band
-      </p>
-      <img
-        src={image3}
-        alt="Spectrogram L1"
-        style={{
-          width: '100%',
-
-          height: 'auto',
-        }}
-      />
       <p style={{ textDecoration: 'underline', alignSelf: 'center' }}>
         Activity Status
       </p>
