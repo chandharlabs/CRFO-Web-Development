@@ -7,3 +7,8 @@ build
 # Yarn files
 yarn.lock
 yarn-error.log
+.yarnrc.yml
+.yarn
+
+# Misc config files
+.pnp.js
