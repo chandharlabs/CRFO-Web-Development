@@ -241,7 +241,7 @@ function Towers(props) {
         autosize: true,
         dragmode: 'zoom',
         mapbox: {
-          style: 'open-street-map',
+          style: 'carto-positron',
           center: { lat: center[0], lon: center[1] + 1.5 },
           zoom,
         },
