@@ -241,7 +241,7 @@ function Towers(props) {
         autosize: true,
         dragmode: 'zoom',
         mapbox: {
-          style: 'carto-positron',
+          style: 'mapbox://styles/jademaveric/ckhksmu6902a61amufo24tocg',
           center: { lat: center[0], lon: center[1] + 1.5 },
           zoom,
         },
@@ -257,7 +257,10 @@ function Towers(props) {
       revision={data.revision}
       useResizeHandler
       style={{ width: '100%', height: '100%' }}
-      config={{ displayModeBar: true }}
+      config={{ 
+        displayModeBar: true,
+        mapboxAccessToken: "pk.eyJ1IjoiamFkZW1hdmVyaWMiLCJhIjoiY2tkNnhlMmM4MDYwMjJ5bm5qdTI4ajU4bSJ9.jyyIbOwxNTrudA0VutNUQA"
+      }}
     />
   );
 }
