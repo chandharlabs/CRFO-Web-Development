@@ -241,7 +241,7 @@ function Towers(props) {
         autosize: true,
         dragmode: 'zoom',
         mapbox: {
-          style: 'mapbox://styles/jademaveric/ckhksmu6902a61amufo24tocg',
+          style: 'mapbox://styles/prabhuchandhar/ckhkwdgzf00x919m9aweihpdm',
           center: { lat: center[0], lon: center[1] + 1.5 },
           zoom,
         },
@@ -259,7 +259,7 @@ function Towers(props) {
       style={{ width: '100%', height: '100%' }}
       config={{ 
         displayModeBar: true,
-        mapboxAccessToken: "pk.eyJ1IjoiamFkZW1hdmVyaWMiLCJhIjoiY2tkNnhlMmM4MDYwMjJ5bm5qdTI4ajU4bSJ9.jyyIbOwxNTrudA0VutNUQA"
+        mapboxAccessToken: "pk.eyJ1IjoicHJhYmh1Y2hhbmRoYXIiLCJhIjoiY2toa3dicDN1MDc4cDJzcnQ5YjIyeGlrdiJ9.cZU60-0wKtJRBpoJZvBFLg"
       }}
     />
   );
