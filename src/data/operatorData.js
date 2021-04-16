@@ -1542,6 +1542,27 @@ const operatorData = [
       dlink: '-',
     },
   ],
+  [
+    // Tamil Nadu
+    {
+      band: '2100 MHz',
+      oper: 'Vodafone',
+      ulink: '1939-1949',
+      dlink: '2129-3139',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Airtel',
+      ulink: '2357.5-2367.5',
+      dlink: '-',
+    },
+    {
+      band: '2300 MHz',
+      oper: 'Reliance',
+      ulink: '2367.5-2377.5',
+      dlink: '-',
+    },
+  ],
 ];
 
 console.log(operatorData[0]);

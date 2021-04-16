@@ -252,6 +252,13 @@ const testCenters = [
     latitude: 88.363044,
     longitude: 22.562627,
     LocationCode: 'L36'
+  },
+  {
+    state:  'Tamil Nadu',
+    city: 'Kalavakkam, Chennai',
+    latitude: 80.196076,
+    longitude: 12.752577,
+    LocationCode: 'L37'
   }
 ];
 
