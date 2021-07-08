@@ -39,8 +39,7 @@ function Towers(props) {
         // Set the text field for the states
         const textField = json.map(
           (sensor) =>
-            `DVB: ${sensor['470 - 790 MHz (DVB)'].PVS * 100}%<br>LTE: ${
-              sensor['830 - 890 MHz (LTE)'].PVS * 100
+            `DVB: ${sensor['470 - 790 MHz (DVB)'].PVS * 100}%<br>LTE: ${sensor['830 - 890 MHz (LTE)'].PVS * 100
             }%<br>GSM900: ${sensor['890 - 960 MHz (GSM900)'].PVS * 100}%`
         );
         // const { centers } = this.state;
@@ -180,7 +179,9 @@ function Towers(props) {
         lon: props.heatData.lon,
         lat: props.heatData.lat,
         type: 'densitymapbox',
-        z: props.heatData.val,
+        z: (props.heatData.val),
+        colorscale: 'Rainbow',
+
       });
     } else alert('upload proper csv file');
     // Show heatmap data
@@ -221,9 +222,9 @@ function Towers(props) {
         name: 'Selected Test Center',
         text: [
           centers.text[
-            centers.LocationCode.findIndex(
-              (code) => code === selectedLocation.state.LocationCode
-            )
+          centers.LocationCode.findIndex(
+            (code) => code === selectedLocation.state.LocationCode
+          )
           ],
         ],
       });
@@ -257,7 +258,7 @@ function Towers(props) {
       revision={data.revision}
       useResizeHandler
       style={{ width: '100%', height: '100%' }}
-      config={{ 
+      config={{
         displayModeBar: true,
         mapboxAccessToken: "pk.eyJ1IjoicHJhYmh1Y2hhbmRoYXIiLCJhIjoiY2toa3dicDN1MDc4cDJzcnQ5YjIyeGlrdiJ9.cZU60-0wKtJRBpoJZvBFLg"
       }}

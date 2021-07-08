@@ -131,14 +131,13 @@ class App extends Component {
                   viewTestCenters={showTestCenters}
                   viewTowers={showTowers}
                   selectedLocation={selectedLocationData}
-				  heatData={heatData}
+                  heatData={heatData}
                 />
               </div>
 
               <div
-                className={`${cx('left-panel')} ${
-                  this.state.showLeftNav ? 'show' : cx('hide')
-                }`}
+                className={`${cx('left-panel')} ${this.state.showLeftNav ? 'show' : cx('hide')
+                  }`}
               >
                 <AppHeader logout={logout} />
                 <div className={cx('tracker-list-container')}>

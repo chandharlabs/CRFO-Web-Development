@@ -25,14 +25,14 @@ export default class ImportFile extends Component {
     data.pop();
     let lat = [];
     let lon = [];
-    let strength = [];
+    let rsrp = [];
     data.map((val) => {
       console.log(val.data);
       lat.push(val.data[0]);
       lon.push(val.data[1]);
-      strength.push(val.data[2]);
+      rsrp.push(val.data[3]);
     });
-    console.log('data:', lat, lon, strength);
+    console.log('data:', lat, lon, rsrp);
 
     // console.log(data.data);
     // data = data.map((col, i) => data.map((row) => row[i]));
@@ -40,7 +40,7 @@ export default class ImportFile extends Component {
     // this.props.setHeatmapData();
     // this.props.setHeatmap(true);
     console.log(this.state.data);
-    this.props.setHeatmapData({ lat: lat, lon: lon, val: strength });
+    this.props.setHeatmapData({ lat: lat, lon: lon, val: rsrp });
   };
 
   handleOnError = (err, file, inputElem, reason) => {
