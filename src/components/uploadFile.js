@@ -30,7 +30,7 @@ export default class ImportFile extends Component {
       console.log(val.data);
       lat.push(val.data[0]);
       lon.push(val.data[1]);
-      rsrp.push(val.data[2]);
+      rsrp.push(val.data[3]);
     });
     console.log('data:', lat, lon, rsrp);
 
