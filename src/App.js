@@ -117,10 +117,10 @@ class App extends Component {
     return (
       <>
         <section className={cx('app-wrapper')}>
-          {!isAuthenticated && (
+          {/*{!isAuthenticated && (
             <LandingPage loginWithRedirect={loginWithRedirect} />
-          )}
-          {isAuthenticated && (
+          )}*/}
+          {!isAuthenticated && (
             <section className={cx('app-container')}>
               <div className={cx('map-wrapper')}>
                 <Towers

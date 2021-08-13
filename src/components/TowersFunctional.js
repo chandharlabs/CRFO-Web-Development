@@ -173,7 +173,6 @@ function Towers(props) {
       }
     );
   } else {
-    console.log(props.heatData.val.length);
     if (props.heatData.val.length) {
       Mapdata.push({
         lon: props.heatData.lon,
